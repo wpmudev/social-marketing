@@ -1,0 +1,55 @@
+.wdsm_result_item {
+	display: none;
+	margin: 1em 0;
+}
+#wdsm_services .inside label {
+  display: inline-block;
+  margin: 20px 0px 0px;
+}
+
+#wdsm_services .widefat label {
+  display: inline;
+  margin: 0px 0px 0px;
+}
+
+#wdsm_services .widefat br {
+    margin-bottom: 16px;
+}
+
+#wdsm_services select, #wdsm_services textarea {
+	background: #fff;
+}
+#wdsm_share_text {
+	margin: 0px 0px 20px;
+}
+
+.wdsm_services_box table * {
+	border-bottom-color: transparent;
+}
+
+/* --- Pop-up editor ----- */
+.wdsm_advanced {
+	display: none;
+}
+#wdsm_advanced_trigger {
+	display: block;
+	float: right;
+}
+#wdsm_advanced_trigger a {
+	font-weight: normal;
+}
+
+.wdsm-insertion_item {
+	clear: both;
+	padding: 5px;
+	margin-bottom: 2px;
+}
+.wdsm-insertion_item:hover {
+	background-color: #FFF8DC;
+}
+.wdsm-insertion_item b {
+	display: block;
+}
+.wdsm_insert_ad {
+	float: right;
+}

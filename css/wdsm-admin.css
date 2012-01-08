@@ -1,0 +1,59 @@
+/* ----- Admin images ----- */
+.icon32-posts-social_marketing_ad {
+	background: url(../img/icon32.png) center center no-repeat !important;
+}
+
+/* ----- Settings / Getting Started boxes ----- */
+.postbox h3 {
+	padding: 7px 10px;
+}
+.postbox .inside .note {
+	background-color: #FFFFE0;
+	border: 1px solid #E6DB55;
+	padding: 0 0.6em;
+	-moz-border-radius:3px;
+	-khtml-border-radius:3px;
+	-webkit-border-radius:3px;
+	border-radius:3px;
+}
+.postbox .wdsm-steps li {
+	clear: both;
+	padding: 1em;
+	margin: 0 auto;
+	border-bottom: 1px solid #eee;
+	font-weight: bold;
+}
+.postbox .wdsm-steps li:hover {
+	background-color: #eee;
+}
+.postbox .wdsm-steps li a.button {
+	float: right;
+}
+
+.postbox .wdsm-steps li span.wdsm_del {
+	text-decoration: none;
+	color: #666;
+	font-style: italic;
+}
+
+/* ----- Help ----- */
+.wpmudev-help {
+	display: block;
+	background-color: #FFFFE0;
+	border: 1px solid #E6DB55;
+	padding: 1em 1em;
+	-moz-border-radius:3px;
+	-khtml-border-radius:3px;
+	-webkit-border-radius:3px;
+	border-radius:3px;
+}
+.wpmudev-help-trigger span {
+	display: block;
+	position: absolute;
+	left: -12000000px;
+}
+.wpmudev-help-trigger {
+	background: url("../img/information.png") no-repeat scroll center bottom transparent;
+	padding: 1px 12px;
+	text-decoration: none;
+}
