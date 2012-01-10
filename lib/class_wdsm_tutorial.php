@@ -90,7 +90,7 @@ class Wdsm_Tutorial {
 			'#icon-edit',
 			__('New Advert', 'wdsm'),
 			array(
-				'content' => '<p>' . esc_js(__('Here is where you’ll create your first social marketing advert!', 'wdsm')) . '</p>',
+				'content' => '<p>' . esc_js(__("Here is where you'll create your first social marketing advert!", 'wdsm')) . '</p>',
 				'position' => array('edge' => 'top', 'align' => 'left'),
 			)
 		);
@@ -204,7 +204,7 @@ class Wdsm_Tutorial {
 			'#wdsm-settings_start',
 			__('Welcome!', 'wdsm'),
 			array(
-				'content' => '<p>' . esc_js(__('This is where you’ll create your first social marketing advert.', 'wdsm')) . '</p>',
+				'content' => '<p>' . esc_js(__("This is where you'll create your first social marketing advert.", 'wdsm')) . '</p>',
 				'position' => array('edge' => 'top', 'align' => 'left'),
 			)
 		);

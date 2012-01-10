@@ -30,7 +30,7 @@ class Wdsm_ContextualHelp {
 			'<ul>' .
 				'<li><a href="http://premium.wpmudev.org/social-marketing" target="_blank">' . __('Project page', 'wdsm') . '</a></li>' .
 				'<li><a href="http://premium.wpmudev.org/social-marketing/installation/" target="_blank">' . __('Installation and instructions page', 'wdsm') . '</a></li>' .
-				'<li><a href="http://premium.wpmudev.org/forums/" target="_blank">' . __('Support forum', 'wdsm') . '</a></li>' .
+				'<li><a href="http://premium.wpmudev.org/forums/tags/social-marketing/" target="_blank">' . __('Support forum', 'wdsm') . '</a></li>' .
 			'</ul>' . 
 		'';
 	}

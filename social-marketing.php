@@ -1,12 +1,12 @@
 <?php
 /*
 Plugin Name: Social Marketing
-Plugin URI: http://premium.wpmudev.org/project/
+Plugin URI: http://premium.wpmudev.org/project/social-marketing
 Description: Marketing on social networks.
-Version: 1.0-BETA-9
+Version: 1.0
 Author: Incsub
 Author URI: http://premium.wpmudev.org
-WDP ID: XXX
+WDP ID: 253
 
 Copyright 2009-2011 Incsub (http://incsub.com)
 

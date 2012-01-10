@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Social Marketing Ads\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-10-06 08:38+0100\n"
-"PO-Revision-Date: 2011-10-06 08:38+0100\n"
+"POT-Creation-Date: 2012-01-10 15:33+0100\n"
+"PO-Revision-Date: 2012-01-10 15:34+0100\n"
 "Last-Translator: \n"
 "Language-Team: Incsub\n"
 "MIME-Version: 1.0\n"
@@ -25,166 +25,502 @@ msgstr ""
 msgid "No"
 msgstr ""
 
-#: lib/class_wdsm_admin_form_renderer.php:46
-msgid "My site already used javascript from this service:"
+#: lib/class_wdsm_admin_form_renderer.php:45
+msgid "My site already uses javascript from this service:"
 msgstr ""
 
-#: lib/class_wdsm_admin_form_renderer.php:57
-msgid "Builtin WordPress Thickbox"
+#: lib/class_wdsm_admin_form_renderer.php:51
+#, php-format
+msgid "Select &quot;Yes&quot; if your pages already include scripts from %s"
 msgstr ""
 
 #: lib/class_wdsm_admin_form_renderer.php:62
+msgid "Built-in WordPress Thickbox"
+msgstr ""
+
+#: lib/class_wdsm_admin_form_renderer.php:63
+msgid "Thickbox is the default pop-up that ships with WordPress"
+msgstr ""
+
+#: lib/class_wdsm_admin_form_renderer.php:69
 msgid "Colorbox"
 msgstr ""
 
-#: lib/class_wdsm_admin_form_renderer.php:65
+#: lib/class_wdsm_admin_form_renderer.php:70
+msgid "Don't like the default pop-up? Try out colorbox"
+msgstr ""
+
+#: lib/class_wdsm_admin_form_renderer.php:74
 msgid "My site already uses Colorbox (via theme or plugin)"
 msgstr ""
 
-#: lib/class_wdsm_admin_pages.php:41
-#: lib/forms/plugin_settings.php:13
-msgid "Settings"
+#: lib/class_wdsm_admin_form_renderer.php:77
+msgid "Select &quot;Yes&quot; if you already have Colorbox-based pop-ups on your pages"
 msgstr ""
 
-#: lib/class_wdsm_admin_pages.php:48
-#: lib/class_wdsm_admin_pages.php:86
-#: lib/class_wdsm_social_marketing.php:62
-msgid "Services"
+#: lib/class_wdsm_admin_form_renderer.php:99
+msgid "Do not load styles, my theme already has all the styles I need"
 msgstr ""
 
-#: lib/class_wdsm_admin_pages.php:49
-msgid "Popup box"
+#: lib/class_wdsm_admin_form_renderer.php:100
+msgid "Check this option if you have styles you wish to use instead of the default ones."
 msgstr ""
 
-#: lib/class_wdsm_admin_pages.php:50
+#: lib/class_wdsm_admin_form_renderer.php:106
+msgid "Show &quot;Getting started&quot; page even after all the steps are done:"
+msgstr ""
+
+#: lib/class_wdsm_admin_form_renderer.php:108
+msgid "By default, &quot;Getting started&quot; page will be hidden once you completed all the steps. Use this option to make it control that behavior."
+msgstr ""
+
+#: lib/class_wdsm_admin_pages.php:33
+msgid "Pop-up box"
+msgstr ""
+
+#: lib/class_wdsm_admin_pages.php:34
+#: lib/class_wdsm_contextual_help.php:125
+#: lib/class_wdsm_tutorial.php:229
 msgid "Javascript"
 msgstr ""
 
-#: lib/class_wdsm_admin_pages.php:82
-msgid "Insert Social Ad"
-msgstr ""
-
-#: lib/class_wdsm_admin_pages.php:83
-msgid "Title"
-msgstr ""
-
-#: lib/class_wdsm_admin_pages.php:84
-msgid "Date"
-msgstr ""
-
-#: lib/class_wdsm_admin_pages.php:85
-#: lib/class_wdsm_social_marketing.php:61
-#: lib/class_wdsm_social_marketing.php:138
-msgid "Type"
-msgstr ""
-
-#: lib/class_wdsm_admin_pages.php:87
+#: lib/class_wdsm_admin_pages.php:35
+#: lib/class_wdsm_admin_pages.php:203
+#: lib/class_wdsm_tutorial.php:241
 msgid "Appearance"
 msgstr ""
 
-#: lib/class_wdsm_admin_pages.php:88
+#: lib/class_wdsm_admin_pages.php:36
+msgid "Getting started page"
+msgstr ""
+
+#: lib/class_wdsm_admin_pages.php:64
+msgid "Getting Started"
+msgstr ""
+
+#: lib/class_wdsm_admin_pages.php:66
+#: lib/forms/plugin_settings.php:6
+msgid "Settings"
+msgstr ""
+
+#: lib/class_wdsm_admin_pages.php:198
+msgid "Insert Social Ad"
+msgstr ""
+
+#: lib/class_wdsm_admin_pages.php:199
+#: lib/class_wdsm_tutorial.php:104
+msgid "Title"
+msgstr ""
+
+#: lib/class_wdsm_admin_pages.php:200
+msgid "Date"
+msgstr ""
+
+#: lib/class_wdsm_admin_pages.php:201
+#: lib/class_wdsm_social_marketing.php:102
+#: lib/class_wdsm_social_marketing.php:198
+msgid "Type"
+msgstr ""
+
+#: lib/class_wdsm_admin_pages.php:202
+#: lib/class_wdsm_social_marketing.php:103
+msgid "Services"
+msgstr ""
+
+#: lib/class_wdsm_admin_pages.php:204
+msgid "Advanced"
+msgstr ""
+
+#: lib/class_wdsm_admin_pages.php:205
 msgid "Insert blank placeholder for an ad"
 msgstr ""
 
-#: lib/class_wdsm_admin_pages.php:89
+#: lib/class_wdsm_admin_pages.php:206
 msgid "or select an Ad to insert from the ones listed below"
 msgstr ""
 
-#: lib/class_wdsm_admin_pages.php:90
-#: lib/class_wdsm_admin_pages.php:96
+#: lib/class_wdsm_admin_pages.php:207
+#: lib/class_wdsm_admin_pages.php:213
 msgid "Default"
 msgstr ""
 
-#: lib/class_wdsm_admin_pages.php:91
+#: lib/class_wdsm_admin_pages.php:208
 msgid "Additional CSS classes (link)"
 msgstr ""
 
-#: lib/class_wdsm_admin_pages.php:92
+#: lib/class_wdsm_admin_pages.php:209
 msgid "Additional CSS classes (container)"
 msgstr ""
 
-#: lib/class_wdsm_admin_pages.php:93
-#: lib/class_wdsm_social_marketing.php:72
-#: lib/class_wdsm_social_marketing.php:140
+#: lib/class_wdsm_admin_pages.php:210
+#: lib/class_wdsm_social_marketing.php:116
+#: lib/class_wdsm_social_marketing.php:200
+#: lib/class_wdsm_social_marketing.php:208
 msgid "Download URL"
 msgstr ""
 
-#: lib/class_wdsm_admin_pages.php:94
+#: lib/class_wdsm_admin_pages.php:211
+#: lib/class_wdsm_social_marketing.php:214
 msgid "Coupon Code"
 msgstr ""
 
-#: lib/class_wdsm_admin_pages.php:95
+#: lib/class_wdsm_admin_pages.php:212
 msgid "Alignment"
 msgstr ""
 
-#: lib/class_wdsm_admin_pages.php:97
+#: lib/class_wdsm_admin_pages.php:214
 msgid "Left"
 msgstr ""
 
-#: lib/class_wdsm_admin_pages.php:98
+#: lib/class_wdsm_admin_pages.php:215
 msgid "Right"
 msgstr ""
 
-#: lib/class_wdsm_admin_pages.php:99
+#: lib/class_wdsm_admin_pages.php:216
 msgid "Center"
 msgstr ""
 
-#: lib/class_wdsm_service.php:22
-msgid "Don't show this service"
+#: lib/class_wdsm_contextual_help.php:29
+#: lib/class_wdsm_social_marketing.php:146
+msgid "Social Marketing"
+msgstr ""
+
+#: lib/class_wdsm_contextual_help.php:31
+msgid "Project page"
+msgstr ""
+
+#: lib/class_wdsm_contextual_help.php:32
+#: lib/forms/getting_started.php:55
+msgid "Installation and instructions page"
+msgstr ""
+
+#: lib/class_wdsm_contextual_help.php:33
+#: lib/forms/getting_started.php:57
+msgid "Support forum"
+msgstr ""
+
+#: lib/class_wdsm_contextual_help.php:52
+#: lib/class_wdsm_contextual_help.php:66
+#: lib/class_wdsm_contextual_help.php:93
+#: lib/class_wdsm_contextual_help.php:112
+msgid "Intro"
+msgstr ""
+
+#: lib/class_wdsm_contextual_help.php:53
+msgid "Your existing Social Marketing Adverts are listed here."
+msgstr ""
+
+#: lib/class_wdsm_contextual_help.php:69
+msgid "This is where you can edit or create a Social Marketing Advert."
+msgstr ""
+
+#: lib/class_wdsm_contextual_help.php:75
+#: lib/class_wdsm_contextual_help.php:132
+#: lib/external/pointers_tutorial.php:134
+msgid "Tutorial"
+msgstr ""
+
+#: lib/class_wdsm_contextual_help.php:78
+#: lib/class_wdsm_contextual_help.php:135
+msgid "Tutorial dialogs will guide you through the important bits."
+msgstr ""
+
+#: lib/class_wdsm_contextual_help.php:80
+#: lib/class_wdsm_contextual_help.php:137
+msgid "Restart the tutorial"
+msgstr ""
+
+#: lib/class_wdsm_contextual_help.php:94
+msgid "This is the guide to get you started with <b>Social Marketing</b> plugin"
+msgstr ""
+
+#: lib/class_wdsm_contextual_help.php:98
+msgid "Guide"
+msgstr ""
+
+#: lib/class_wdsm_contextual_help.php:99
+msgid "Please go through the steps to complete your plugin setup and find your way around"
+msgstr ""
+
+#: lib/class_wdsm_contextual_help.php:113
+msgid "This is where you configure <b>Social Marketing</b> plugin for your site"
+msgstr ""
+
+#: lib/class_wdsm_contextual_help.php:117
+msgid "Popup box"
+msgstr ""
+
+#: lib/class_wdsm_contextual_help.php:119
+msgid "Choose between the WordPress built-in Thickbox, or more pretty Colorbox."
+msgstr ""
+
+#: lib/class_wdsm_contextual_help.php:120
+msgid "If you decide to go with Colorbox and your site already uses it, don't forget to check &quot;My site already uses Colorbox (via theme or plugin)&quot; option."
+msgstr ""
+
+#: lib/class_wdsm_contextual_help.php:127
+msgid "If your site already uses javascripts from one or more of the supported services, say so here to prevent conflicts."
 msgstr ""
 
 #: lib/class_wdsm_service.php:26
+msgid "Don't show this service"
+msgstr ""
+
+#: lib/class_wdsm_service.php:30
 msgid "Show share button"
 msgstr ""
 
-#: lib/class_wdsm_service.php:31
+#: lib/class_wdsm_service.php:35
 msgid "Show share text"
 msgstr ""
 
-#: lib/class_wdsm_social_marketing.php:34
+#: lib/class_wdsm_social_marketing.php:40
+msgid "Yellow"
+msgstr ""
+
+#: lib/class_wdsm_social_marketing.php:41
+msgid "Blue"
+msgstr ""
+
+#: lib/class_wdsm_social_marketing.php:42
+msgid "Grey"
+msgstr ""
+
+#: lib/class_wdsm_social_marketing.php:43
+msgid "Red"
+msgstr ""
+
+#: lib/class_wdsm_social_marketing.php:57
 #, php-format
 msgid "Unsupported service: %s"
 msgstr ""
 
-#: lib/class_wdsm_social_marketing.php:72
-#: lib/class_wdsm_social_marketing.php:141
-#: lib/class_wdsm_social_marketing.php:154
+#: lib/class_wdsm_social_marketing.php:116
+#: lib/class_wdsm_social_marketing.php:201
 msgid "Coupon code"
 msgstr ""
 
-#: lib/class_wdsm_social_marketing.php:93
-msgid "Social Marketing Ads"
-msgstr ""
-
-#: lib/class_wdsm_social_marketing.php:94
-msgid "Social Marketing Ad"
-msgstr ""
-
-#: lib/class_wdsm_social_marketing.php:95
-msgid "Add new Social Marketing Ad"
-msgstr ""
-
-#: lib/class_wdsm_social_marketing.php:96
-msgid "Edit Social Marketing Ad"
-msgstr ""
-
-#: lib/class_wdsm_social_marketing.php:109
-msgid "Set up Social Marketing"
-msgstr ""
-
-#: lib/class_wdsm_social_marketing.php:130
-msgid "URL to share"
-msgstr ""
-
-#: lib/class_wdsm_social_marketing.php:134
-msgid "Button text"
+#: lib/class_wdsm_social_marketing.php:147
+msgid "Social Marketing Advert"
 msgstr ""
 
 #: lib/class_wdsm_social_marketing.php:148
-msgid "Dowload URL"
+msgid "Add new Social Marketing Advert"
 msgstr ""
 
-#: lib/class_wdsm_social_marketing.php:160
-msgid "Share text <small>(will be shown after share action)</small>"
+#: lib/class_wdsm_social_marketing.php:149
+msgid "Edit Social Marketing Advert"
+msgstr ""
+
+#: lib/class_wdsm_social_marketing.php:166
+msgid "Set up Social Marketing"
+msgstr ""
+
+#: lib/class_wdsm_social_marketing.php:190
+msgid "URL to Share"
+msgstr ""
+
+#: lib/class_wdsm_social_marketing.php:194
+msgid "Button Text"
+msgstr ""
+
+#: lib/class_wdsm_social_marketing.php:220
+msgid "Thank You Text <small>(will be shown after share action)</small>"
+msgstr ""
+
+#: lib/class_wdsm_social_marketing.php:227
+msgid "Social Media Services"
+msgstr ""
+
+#: lib/class_wdsm_tutorial.php:30
+msgid "Social Marketing tutorial"
+msgstr ""
+
+#: lib/class_wdsm_tutorial.php:31
+msgid "Setup tutorial"
+msgstr ""
+
+#: lib/class_wdsm_tutorial.php:91
+msgid "New Advert"
+msgstr ""
+
+#: lib/class_wdsm_tutorial.php:93
+msgid "Here is where you'll create your first social marketing advert!"
+msgstr ""
+
+#: lib/class_wdsm_tutorial.php:106
+msgid "Give your advert a title."
+msgstr ""
+
+#: lib/class_wdsm_tutorial.php:117
+msgid "Sell Your Product"
+msgstr ""
+
+#: lib/class_wdsm_tutorial.php:119
+msgid "Tell your visitors why they should click on your advert!"
+msgstr ""
+
+#: lib/class_wdsm_tutorial.php:130
+msgid "Social Marketing Options"
+msgstr ""
+
+#: lib/class_wdsm_tutorial.php:132
+msgid "You can tweak most of your options here."
+msgstr ""
+
+#: lib/class_wdsm_tutorial.php:143
+msgid "URL"
+msgstr ""
+
+#: lib/class_wdsm_tutorial.php:145
+msgid "This is the URL that will be shared by your visitors with their friends."
+msgstr ""
+
+#: lib/class_wdsm_tutorial.php:155
+msgid "Button text"
+msgstr ""
+
+#: lib/class_wdsm_tutorial.php:157
+msgid "Add a call to action to get your visitors to click!"
+msgstr ""
+
+#: lib/class_wdsm_tutorial.php:167
+msgid "Offer Type"
+msgstr ""
+
+#: lib/class_wdsm_tutorial.php:169
+msgid "Choose whether you are offering a free download or a coupon code."
+msgstr ""
+
+#: lib/class_wdsm_tutorial.php:179
+msgid "Thank You Text"
+msgstr ""
+
+#: lib/class_wdsm_tutorial.php:181
+msgid "Thank your users for clicking on your link."
+msgstr ""
+
+#: lib/class_wdsm_tutorial.php:191
+msgid "Social Media"
+msgstr ""
+
+#: lib/class_wdsm_tutorial.php:193
+msgid "Select one or more social media service."
+msgstr ""
+
+#: lib/class_wdsm_tutorial.php:205
+msgid "Welcome!"
+msgstr ""
+
+#: lib/class_wdsm_tutorial.php:207
+msgid "This is where you'll create your first social marketing advert."
+msgstr ""
+
+#: lib/class_wdsm_tutorial.php:217
+msgid "Pop-up style"
+msgstr ""
+
+#: lib/class_wdsm_tutorial.php:219
+msgid "Choose how your pop-up advert will be displayed. "
+msgstr ""
+
+#: lib/class_wdsm_tutorial.php:231
+msgid "Select any services which already provide javascript to your website."
+msgstr ""
+
+#: lib/class_wdsm_tutorial.php:243
+msgid "Select how your button will look."
+msgstr ""
+
+#: lib/class_wdsm_tutorial.php:253
+msgid "Styles"
+msgstr ""
+
+#: lib/class_wdsm_tutorial.php:255
+msgid "If you want to style the button yourself check this box."
+msgstr ""
+
+#: lib/class_wdsm_widget.php:8
+msgid "Shows your selected Social Marketing Advert"
+msgstr ""
+
+#: lib/class_wdsm_widget.php:82
+msgid "Title:"
+msgstr ""
+
+#: lib/class_wdsm_widget.php:87
+msgid "Show this advert:"
+msgstr ""
+
+#: lib/external/pointers_tutorial.php:421
+msgid "Next &raquo;"
+msgstr ""
+
+#: lib/external/pointers_tutorial.php:436
+#: lib/external/pointers_tutorial.php:458
+msgid "Dismiss"
+msgstr ""
+
+#: lib/external/pointers_tutorial.php:437
+#: lib/external/pointers_tutorial.php:459
+#, php-format
+msgid "Dismiss %s"
+msgstr ""
+
+#: lib/external/pointers_tutorial.php:443
+msgid "&laquo; Previous"
+msgstr ""
+
+#: lib/external/pointers_tutorial.php:498
+#, php-format
+msgid "%s: Step %d of %d"
+msgstr ""
+
+#: lib/forms/getting_started.php:3
+msgid "Getting started"
+msgstr ""
+
+#: lib/forms/getting_started.php:9
+msgid "Getting Started Guide"
+msgstr ""
+
+#: lib/forms/getting_started.php:12
+msgid "Welcome to the Social Marketing Getting Started Guide."
+msgstr ""
+
+#: lib/forms/getting_started.php:19
+msgid "First up, you need to configure your settings. This is where you can set the behavior and appearance of your ads."
+msgstr ""
+
+#: lib/forms/getting_started.php:23
+msgid "Configure your settings"
+msgstr ""
+
+#: lib/forms/getting_started.php:29
+msgid "Next, create a new advert. "
+msgstr ""
+
+#: lib/forms/getting_started.php:33
+msgid "Create Advert"
+msgstr ""
+
+#: lib/forms/getting_started.php:39
+msgid "Finally, insert your advert into a post."
+msgstr ""
+
+#: lib/forms/getting_started.php:43
+msgid "Insert into Post"
+msgstr ""
+
+#: lib/forms/getting_started.php:51
+msgid "Need More Help?"
+msgstr ""
+
+#: lib/forms/getting_started.php:54
+msgid "Plugin project page"
+msgstr ""
+
+#: lib/forms/getting_started.php:56
+msgid "Video tutorial"
 msgstr ""
 
