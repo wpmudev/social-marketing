@@ -51,10 +51,10 @@
 		<h3 class="hndle"><span><?php _e('Need More Help?', 'wdsm'); ?></span></h3>
 		<div class="inside">
 			<ul>
-				<li><a href="#" target="_blank"><?php _e('Plugin project page', 'wdsm'); ?></a></li>
-				<li><a href="#" target="_blank"><?php _e('Installation and instructions page', 'wdsm'); ?></a></li>
-				<li><a href="#" target="_blank"><?php _e('Video tutorial', 'wdsm'); ?></a></li>
-				<li><a href="#" target="_blank"><?php _e('Support forum', 'wdsm'); ?></a></li>
+				<li><a href="http://premium.wpmudev.org/project/social-marketing" target="_blank"><?php _e('Plugin project page', 'wdsm'); ?></a></li>
+				<li><a href="http://premium.wpmudev.org/project/social-marketing/installation/" target="_blank"><?php _e('Installation and instructions page', 'wdsm'); ?></a></li>
+				<!--<li><a href="#" target="_blank"><?php _e('Video tutorial', 'wdsm'); ?></a></li>-->
+				<li><a href="http://premium.wpmudev.org/forums/tags/social-marketing" target="_blank"><?php _e('Support forum', 'wdsm'); ?></a></li>
 			</ul>
 		</div>
 	</div>
