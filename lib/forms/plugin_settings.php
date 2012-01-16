@@ -12,7 +12,7 @@ if (!function_exists('wpmudev_do_settings_sections')) require_once WDSM_PLUGIN_B
 <?php wpmudev_do_settings_sections('wdsm_options_page'); ?>
 
 <p class="submit">
-<?php if (@$_GET['tutorial']) { ?>
+<?php if (wdsm_getval($_GET, 'tutorial')) { ?>
 	<input name="Submit" type="submit" class="button" value="<?php esc_attr_e('Save Changes'); ?>" />
 	<input name="submit_and_go_back" type="submit" class="button-primary" value="<?php esc_attr_e('Save Changes and go back to Tutorial'); ?>" />
 <?php } else { ?>

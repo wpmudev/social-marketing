@@ -39,7 +39,8 @@ EOFb;
 	}
 
 	private function _render_button ($ad) {
-		return "<div class='wdsm_button wdsm_facebook_button'><fb:like layout='box_count' href='{$ad->wdsm->url}'></div>";
+		//return "<div class='wdsm_button wdsm_facebook_button'><fb:like layout='box_count' href='{$ad->wdsm->url}'></div>";
+		return "<div class='wdsm_button wdsm_facebook_button'><a href='#' onclick='javascript:wdsm_linkedin_callback(\"{$ad->wdsm->url}\");return false;'>Test service</a></div>";
 	}
 
 	private function _render_text ($ad) {

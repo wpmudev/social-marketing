@@ -16,7 +16,12 @@ $(".wdsm_action_link").each(function () {
 
 $(document).bind("wdsm_button_action", function (e, service) {
 	var ad_id = $("#cboxLoadedContent").find("input.wdsm_ad_id").val();
-	$.post(_wdsm_ajax_url, {
+	var $services = $("#cboxLoadedContent").find(".wdsm_services");
+	$services.after(
+		'<p class="wdsm-service-waiting_response"><img src="' + _wdsm_data.root_url + '/img/ajax-loader.gif" /></p>'
+	);
+	$.colorbox.resize();
+	$.post(_wdsm_data.ajax_url, {
 		"action": "wdsm_show_code",
 		"ad_id": ad_id,
 		"service": service
@@ -29,6 +34,7 @@ $(document).bind("wdsm_button_action", function (e, service) {
 		}
 		var $old = $("#cboxLoadedContent").find(".wdsm_result");
 		if ($old.length) $old.remove();
+		$("#cboxLoadedContent .wdsm-service-waiting_response").remove(); // Remove loading indicator
 		$("#cboxLoadedContent").append('<div class="wdsm_result">' + html + '</div>');
 		$.colorbox.resize();
 	});

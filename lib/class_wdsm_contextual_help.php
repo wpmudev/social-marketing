@@ -112,6 +112,7 @@ class Wdsm_ContextualHelp {
 					'title' => __('Intro', 'wdsm'),
 					'content' => '<p>' . __('This is where you configure <b>Social Marketing</b> plugin for your site', 'wdsm') . '</p>',
 				),
+				/*
 				array(
 					'id' => 'wdsm-popup',
 					'title' => __('Popup box', 'wdsm'),
@@ -120,6 +121,7 @@ class Wdsm_ContextualHelp {
 							'<p>' . __("If you decide to go with Colorbox and your site already uses it, don't forget to check &quot;My site already uses Colorbox (via theme or plugin)&quot; option.", 'wdsm') . '</p>' .
 						'',
 				),
+				*/
 				array(
 					'id' => 'wdsm-javascript',
 					'title' => __('Javascript', 'wdsm'),

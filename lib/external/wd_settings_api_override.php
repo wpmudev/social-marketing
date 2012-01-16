@@ -15,32 +15,6 @@ function wpmudev_do_settings_sections($page) {
 		wpmudev_do_settings_fields($page, $section['id']);
 		echo '</table>';
 	}
-	echo<<<EOWpmuDevSettingsJs
-<script type="text/javascript">
-(function ($) {
-$(function () {
-		
-$(".postbox .wpmudev-help").each(function () {
-	var me = $(this);
-	me.prev().after(
-		'&nbsp;<a class="wpmudev-help-trigger" href="#help"><span>help</span></help>'
-	);
-	me.hide();
-});
-
-$(".wpmudev-help-trigger").click(function () {
-	var me = $(this);
-	var parent = me.parent();
-	var help = parent.find('.wpmudev-help');
-	if (help.is(":visible")) help.hide();
-	else help.show();
-	return false;
-});
-	
-});	
-})(jQuery);
-</script>
-EOWpmuDevSettingsJs;
 }
 function wpmudev_do_settings_fields($page, $section) {
 	global $wp_settings_fields;

@@ -23,9 +23,9 @@ class Wdsm_WidgetAdvert extends WP_Widget {
 		$opt = get_option('wdsm');
 		$opt = $opt ? $opt : array();
 
-		if ('colorbox' == @$opt['popup_box']) {
+		if ('colorbox' == wdsm_getval($opt, 'popup_box')) {
 			wp_enqueue_script('wdsm-public', WDSM_PLUGIN_URL . '/js/public-cb.js');
-			if (!@$opt['internal_colorbox']) {
+			if (!wdsm_getval($opt, 'internal_colorbox')) {
 				wp_enqueue_script('wdsm-colorbox', WDSM_PLUGIN_URL . '/js/external/jquery.colorbox-min.js');
 			}
 		} else {
@@ -33,7 +33,7 @@ class Wdsm_WidgetAdvert extends WP_Widget {
 			wp_enqueue_script('wdsm-public', WDSM_PLUGIN_URL . '/js/public-tb.js');
 		}
 
-		$have_js = $opt['have_js'];
+		$have_js = wdsm_getval($opt, 'have_js');
 		foreach ($wdsm->get_services() as $id=>$service) {
 			$wdsm->add_service_handler_js($id);
 			if (!(int)$have_js[$id]) $wdsm->add_service_js($id);
@@ -51,8 +51,8 @@ class Wdsm_WidgetAdvert extends WP_Widget {
 		$opt = get_option('wdsm');
 		$opt = $opt ? $opt : array();
 
-		if ('colorbox' == @$opt['popup_box']) {
-			if (!@$opt['internal_colorbox']) {
+		if ('colorbox' == wdsm_getval($opt, 'popup_box')) {
+			if (!wdsm_getval($opt, 'internal_colorbox')) {
 				wp_enqueue_style('wdsm-colorbox', WDSM_PLUGIN_URL . '/css/external/colorbox.css');
 			}
 		} else {
@@ -61,8 +61,8 @@ class Wdsm_WidgetAdvert extends WP_Widget {
 
 		if (!current_theme_supports('wdsm')) {
 			wp_enqueue_style('wdsm-public', WDSM_PLUGIN_URL . "/css/public.css");
-			if (@$opt['theme']) {
-				$theme = preg_replace('/[^-_a-z0-9]/', '', strtolower(@$opt['theme']));
+			if (wdsm_getval($opt, 'theme')) {
+				$theme = preg_replace('/[^-_a-z0-9]/', '', strtolower(wdsm_getval($opt, 'theme')));
 				if (!file_exists(WDSM_PLUGIN_BASE_DIR . "/css/themes/{$theme}.css")) return false;
 				wp_enqueue_style('wdsm-theme', WDSM_PLUGIN_URL . "/css/themes/{$theme}.css");
 			}
@@ -70,8 +70,8 @@ class Wdsm_WidgetAdvert extends WP_Widget {
 	}
 
 	function form($instance) {
-		$title = esc_attr($instance['title']);
-		$ad_id = @$instance['ad_id'];
+		$title = esc_attr(wdsm_getval($instance, 'title'));
+		$ad_id = wdsm_getval($instance, 'ad_id');
 
 		// Set defaults
 		// ...

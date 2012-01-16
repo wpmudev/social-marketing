@@ -27,23 +27,18 @@ class Wdsm_PublicPages {
 		$opt = get_option('wdsm');
 		$opt = $opt ? $opt : array();
 
-		if ('colorbox' == @$opt['popup_box']) {
-			wp_enqueue_script('wdsm-public', WDSM_PLUGIN_URL . '/js/public-cb.js');
-			if (!@$opt['internal_colorbox']) {
-				wp_enqueue_script('wdsm-colorbox', WDSM_PLUGIN_URL . '/js/external/jquery.colorbox-min.js');
-			}
-		} else {
-			add_thickbox();
-			wp_enqueue_script('wdsm-public', WDSM_PLUGIN_URL . '/js/public-tb.js');
-		}
+		wp_enqueue_script('wdsm-public', WDSM_PLUGIN_URL . '/js/public.js');
 
-		$have_js = $opt['have_js'];
+		$have_js = wdsm_getval($opt, 'have_js');
 		foreach ($this->_wdsm->get_services() as $id=>$service) {
 			$this->_wdsm->add_service_handler_js($id);
 			if (!(int)$have_js[$id]) $this->_wdsm->add_service_js($id);
 		}
 
-		printf('<script type="text/javascript">var _wdsm_ajax_url="%s";</script>', admin_url('admin-ajax.php'));
+		printf(
+			'<script type="text/javascript">var _wdsm_data={"ajax_url": "%s", "root_url": "%s"};</script>', 
+			admin_url('admin-ajax.php'), WDSM_PLUGIN_URL
+		);
 	}
 	
 	/**
@@ -54,14 +49,6 @@ class Wdsm_PublicPages {
 
 		$opt = get_option('wdsm');
 		$opt = $opt ? $opt : array();
-
-		if ('colorbox' == @$opt['popup_box']) {
-			if (!@$opt['internal_colorbox']) {
-				wp_enqueue_style('wdsm-colorbox', WDSM_PLUGIN_URL . '/css/external/colorbox.css');
-			}
-		} else {
-			wp_enqueue_style('thickbox');
-		}
 
 		if (!current_theme_supports('wdsm')) {
 			wp_enqueue_style('wdsm-public', WDSM_PLUGIN_URL . "/css/wdsm.css");

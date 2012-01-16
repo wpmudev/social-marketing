@@ -4,8 +4,9 @@
 }
 
 /* ----- Settings / Getting Started boxes ----- */
-.postbox h3 {
+.postbox h3.hndle {
 	padding: 7px 10px;
+	cursor: default;
 }
 .postbox .inside .note {
 	background-color: #FFFFE0;
@@ -34,26 +35,4 @@
 	text-decoration: none;
 	color: #666;
 	font-style: italic;
-}
-
-/* ----- Help ----- */
-.wpmudev-help {
-	display: block;
-	background-color: #FFFFE0;
-	border: 1px solid #E6DB55;
-	padding: 1em 1em;
-	-moz-border-radius:3px;
-	-khtml-border-radius:3px;
-	-webkit-border-radius:3px;
-	border-radius:3px;
-}
-.wpmudev-help-trigger span {
-	display: block;
-	position: absolute;
-	left: -12000000px;
-}
-.wpmudev-help-trigger {
-	background: url("../img/information.png") no-repeat scroll center bottom transparent;
-	padding: 1px 12px;
-	text-decoration: none;
 }

@@ -3,7 +3,7 @@
 Plugin Name: Social Marketing
 Plugin URI: http://premium.wpmudev.org/project/social-marketing
 Description: Marketing on social networks.
-Version: 1.0.1
+Version: 1.1-ALPHA-1
 Author: Incsub
 Author URI: http://premium.wpmudev.org
 WDP ID: 253

@@ -13,31 +13,31 @@
 			</div>
 			<ol class="wdsm-steps">
 				<li>
-					<?php if (@$wdsm_tutorial['settings']) { ?>
+					<?php if (wdsm_getval($wdsm_tutorial, 'settings')) { ?>
 						<span class="wdsm_del">
 					<?php } ?>
 						<?php _e('First up, you need to configure your settings. This is where you can set the behavior and appearance of your ads.', 'wdsm'); ?>					
-					<?php if (@$wdsm_tutorial['settings']) { ?>
+					<?php if (wdsm_getval($wdsm_tutorial, 'settings')) { ?>
 						</span>
 					<?php } ?> 
 					<a href="admin.php?page=wdsm-get_started&intent=settings" class="button"><?php _e('Configure your settings', 'wdsm'); ?></a>
 				</li>
 				<li>
-					<?php if (@$wdsm_tutorial['add']) { ?>
+					<?php if (wdsm_getval($wdsm_tutorial, 'add')) { ?>
 						<span class="wdsm_del">
 					<?php } ?>
 						<?php _e('Next, create a new advert. ', 'wdsm'); ?>					
-					<?php if (@$wdsm_tutorial['add']) { ?>
+					<?php if (wdsm_getval($wdsm_tutorial, 'add')) { ?>
 						</span>
 					<?php } ?> 
 					<a href="admin.php?page=wdsm-get_started&intent=add" class="button"><?php _e('Create Advert', 'wdsm'); ?></a>
 				</li>
 				<li>
-					<?php if (@$wdsm_tutorial['insert']) { ?>
+					<?php if (wdsm_getval($wdsm_tutorial, 'insert')) { ?>
 						<span class="wdsm_del">
 					<?php } ?>
 						<?php _e('Finally, insert your advert into a post.', 'wdsm'); ?>					
-					<?php if (@$wdsm_tutorial['insert']) { ?>
+					<?php if (wdsm_getval($wdsm_tutorial, 'insert')) { ?>
 						</span>
 					<?php } ?> 
 					<a href="admin.php?page=wdsm-get_started&intent=insert" class="button"><?php _e('Insert into Post', 'wdsm'); ?></a>

@@ -8,7 +8,7 @@ class Wdsm_Installer {
 	 * @access public
 	 * @static
 	 */
-	function check () {
+	static function check () {
 		$is_installed = get_option('wdsm', false);
 		if (!$is_installed) Wdsm_Installer::install();
 	}
@@ -27,6 +27,7 @@ class Wdsm_Installer {
 	 */
 	function create_default_options () {
 		update_option('wdsm', array (
+			'welcome_redirect' => true,
 			'theme' => 'yellow',
 		));
 	}

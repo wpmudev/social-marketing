@@ -28,6 +28,11 @@
 }
 
 /* --- Pop-up editor ----- */
+#wdsm-loading_message {
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+}
 .wdsm_advanced {
 	display: none;
 }

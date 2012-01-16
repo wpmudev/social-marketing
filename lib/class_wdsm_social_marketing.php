@@ -81,7 +81,7 @@ class Wdsm_SocialMarketing {
 	/**
 	 * Prepared singleton object getting routine.
 	 */
-	public function get_instance () {
+	public static function get_instance () {
 		return self::$_instance;
 	}
 	
@@ -113,10 +113,10 @@ class Wdsm_SocialMarketing {
 		$wdsm = get_post_meta($post->ID, 'wdsm', true);
 		$wdsm = $wdsm ? $wdsm : array();
 
-		if ('wdsm_type' == $col) echo ('download_url' == $wdsm['type']) ? __('Download URL', 'wdsm') : __('Coupon code', 'wdsm');
+		if ('wdsm_type' == $col) echo ('download_url' == wdsm_getval($wdsm, 'type')) ? __('Download URL', 'wdsm') : __('Coupon code', 'wdsm');
 		if ('wdsm_services' == $col) {
 			$ret = array();
-			if (@$wdsm['services']) foreach ($wdsm['services'] as $id => $service) {
+			if (wdsm_getval($wdsm, 'services')) foreach ($wdsm['services'] as $id => $service) {
 				if ($service) $ret[] = ucfirst($id);
 			}
 			echo join(', ', $ret);
@@ -151,7 +151,7 @@ class Wdsm_SocialMarketing {
 			'menu_icon' => WDSM_PLUGIN_URL . '/img/menu_inactive.png',
 			'public' => true,
 			'supports' => array(
-				'title', 'editor', 'comments'
+				'title', 'editor'
 			),
 			'rewrite' => true,
 		));
@@ -176,26 +176,41 @@ class Wdsm_SocialMarketing {
 	 */
 	public function render_services_box () {
 		global $post;
+		
+		// Init tips API
+		if (!class_exists('WpmuDev_HelpTooltips')) require_once WDSM_PLUGIN_BASE_DIR . '/lib/external/class_wd_help_tooltips.php';
+		$help = new WpmuDev_HelpTooltips();
+		$help->set_icon_url(WDSM_PLUGIN_URL . '/img/information.png');
+		
 		$wdsm = get_post_meta($post->ID, 'wdsm', true);
 		$wdsm = $wdsm ? $wdsm : array();
 
-		$checked_du = ('download_url' == @$wdsm['type']) ? 'selected="selected"' : '';
-		$checked_cc = ('coupon_code' == @$wdsm['type']) ? 'selected="selected"' : '';
-		$download_url = @$wdsm['result']['download_url'];
-		$coupon_code = @$wdsm['result']['coupon_code'];
-		$share_text = @$wdsm['share_text'];
-		$url = @$wdsm['url'];
-		$button_text = @$wdsm['button_text'];
+		$checked_du = ('download_url' == wdsm_getval($wdsm, 'type')) ? 'selected="selected"' : '';
+		$checked_cc = ('coupon_code' == wdsm_getval($wdsm, 'type')) ? 'selected="selected"' : '';
+		$download_url = wdsm_getval($wdsm, 'result', 'download_url');
+		$coupon_code = wdsm_getval($wdsm, 'result', 'coupon_code');
+		$share_text = wdsm_getval($wdsm, 'share_text');
+		$url = wdsm_getval($wdsm, 'url');
+		$button_text = wdsm_getval($wdsm, 'button_text');
 		echo
-			"<label for='wdsm_url'>" . __('URL to Share', 'wdsm') . '</label> ' .
+			"<label for='wdsm_url' style='width:100%'>" . 
+				__('URL to Share', 'wdsm') .
+				$help->add_tip(__('This is the URL that will be shared by your visitors with their friends.', 'wdsm')) .
+			'</label> ' .
 			"<input type='text' class='widefat' id='wdsm_url' name='wdsm[url]' value='{$url}' />" .
 		'<br />';
 		echo
-			"<label for='wdsm_button_text'>" . __('Button Text', 'wdsm') . '</label> ' .
+			"<label for='wdsm_button_text' style='width:100%'>" . 
+				__('Button Text', 'wdsm') . 
+				$help->add_tip(__('Add a call to action to get your visitors to click!', 'wdsm')) .
+			'</label> ' .
 			"<input type='text' class='widefat' id='wdsm_button_text' name='wdsm[button_text]' value='{$button_text}' />" .
 		'<br />';
 		echo
-			"<label for='wdsm_type'>" . __('Type', 'wdsm') . '</label> ' .
+			"<label for='wdsm_type' style='width:100%'>" . 
+				__('Type', 'wdsm') . 
+				$help->add_tip(__('Choose whether you are offering a free download or a coupon code.', 'wdsm')) .
+			'</label> ' .
 			"<select class='widefat' id='wdsm_type' name='wdsm[type]'>" .
 				"<option wdsm:for='wdsm_download_url' value='download_url' {$checked_du}>" . __('Download URL', 'wdsm') . '</option>' .
 				"<option wdsm:for='wdsm_coupon_code' value='coupon_code' {$checked_cc}>" . __('Coupon code', 'wdsm') . '</option>' .
@@ -205,28 +220,36 @@ class Wdsm_SocialMarketing {
 		echo '<div id="wdsm_share_root">';
 		echo '<div id="wdsm_download_url" class="wdsm_result_item">';
 		echo
-			"<label for='wdsm_result-download_url'>" . __('Download URL', 'wdsm') . '</label> ' .
+			"<label for='wdsm_result-download_url' style='width:100%'>" . 
+				__('Download URL', 'wdsm') . 
+			'</label> ' .
 			"<input type='text' class='widefat' id='wdsm_result-download_url' name='wdsm[result][download_url]' value='{$download_url}' />" .
 		'<br />';
 		echo '</div>';
 		echo '<div id="wdsm_coupon_code" class="wdsm_result_item">';
 		echo
-			"<label for='wdsm_result-coupon_code'>" . __('Coupon Code', 'wdsm') . '</label> ' .
+			"<label for='wdsm_result-coupon_code' style='width:100%'>" . 
+				__('Coupon Code', 'wdsm') . 
+			'</label> ' .
 			"<textarea class='widefat' id='wdsm_result-coupon_code' name='wdsm[result][coupon_code]'>{$coupon_code}</textarea>" .
 		'<br />';
 		echo '</div>';
 		echo '</div>'; // Share root;
 		echo
-			"<label for='wdsm_share_text'>" . __('Thank You Text <small>(will be shown after share action)</small>', 'wdsm') . '</label> ' .
+			"<label for='wdsm_share_text' style='width:100%'>" . 
+				__('Thank You Text <small>(will be shown after share action)</small>', 'wdsm') . 
+				$help->add_tip(__('Thank your users for clicking on your link.', 'wdsm')) .
+			'</label> ' .
 			"<textarea class='widefat' id='wdsm_share_text' name='wdsm[share_text]'>{$share_text}</textarea>" .
 		'<br />';
 
 		echo '<table class="widefat" id="wdsm-services_box">';
-		foreach (array('thead', 'tfoot') as $el) {
-			echo "<{$el}><tr>";
-			echo '<th colspan="4">' . __('Social Media Services', 'wdsm') . '</th>';
-			echo "</tr></{$el}>";
-		}
+		echo "<thead><tr>";
+		echo '<th colspan="4">' . 
+			__('Social Media Services', 'wdsm') . 
+			$help->add_tip(__('Select one or more social media service.', 'wdsm')) .
+		'</th>';
+		echo "</tr></thead>\n";
 		echo '<tbody><tr>';
 		$cnt = 1;
 		foreach ($this->_services as $class => $service) {
@@ -251,7 +274,7 @@ class Wdsm_SocialMarketing {
 		if (function_exists('post_indexer_post_insert_update')) {
 			remove_action('save_post', 'post_indexer_post_insert_update');
 		}
-		if (@$_POST['wdsm']) {
+		if (wdsm_getval($_POST, 'wdsm')) {
 			update_post_meta($post->ID, "wdsm", $_POST["wdsm"]);
 		}
 	}

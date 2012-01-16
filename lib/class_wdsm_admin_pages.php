@@ -6,8 +6,6 @@ class Wdsm_AdminPages {
 
 	private $_wdsm;
 
-	function Wdsm_AdminPages () { $this->__construct(); }
-
 	function __construct () {
 		$this->_wdsm = Wdsm_SocialMarketing::get_instance();
 	}
@@ -17,9 +15,9 @@ class Wdsm_AdminPages {
 	 *
 	 * @static
 	 */
-	function serve () {
+	public static function serve () {
 		$me = new Wdsm_AdminPages;
-		$me->add_hooks();
+		$me->_add_hooks();
 	}
 
 	/**
@@ -30,7 +28,7 @@ class Wdsm_AdminPages {
 
 		register_setting('wdsm', 'wdsm');
 		add_settings_section('wdsm_services', ''/*__('Services', 'wdsm')*/, create_function('', ''), 'wdsm_options_page');
-		add_settings_field('wdsm_box', __('Pop-up box', 'wdsm'), array($form, 'create_popup_box'), 'wdsm_options_page', 'wdsm_services');
+		//add_settings_field('wdsm_box', __('Pop-up box', 'wdsm'), array($form, 'create_popup_box'), 'wdsm_options_page', 'wdsm_services');
 		add_settings_field('wdsm_js', __('Javascript', 'wdsm'), array($form, 'create_javascript_box'), 'wdsm_options_page', 'wdsm_services');
 		add_settings_field('wdsm_theme', __('Appearance', 'wdsm'), array($form, 'create_theme_box'), 'wdsm_options_page', 'wdsm_services');
 		add_settings_field('wdsm_getting_started', __('Getting started page', 'wdsm'), array($form, 'create_getting_started_box'), 'wdsm_options_page', 'wdsm_services');
@@ -43,7 +41,7 @@ class Wdsm_AdminPages {
 	function create_admin_menu_entry () {
 		if (@$_POST && isset($_POST['option_page'])) {
 			$changed = false;
-			if ('wdsm' == @$_POST['option_page']) {
+			if ('wdsm' == wdsm_getval($_POST, 'option_page')) {
 				update_option('wdsm', $_POST['wdsm']);
 				$changed = true;
 			}
@@ -60,7 +58,7 @@ class Wdsm_AdminPages {
 		$page = "edit.php?post_type=social_marketing_ad";
 		$perms = is_multisite() ? 'manage_network_options' : 'manage_options';
 		$opts = get_option('wdsm');
-		if (@$opts['show_getting_started'] || (!@$opts['show_getting_started'] && !$this->_getting_started_complete())) {
+		if (wdsm_getval($opts, 'show_getting_started') || (!wdsm_getval($opts, 'show_getting_started') && !$this->_getting_started_complete())) {
 			add_submenu_page($page, __('Getting Started', 'wdsm'), __('Getting Started', 'wdsm'), $perms, 'wdsm-get_started', array($this, 'create_getting_started_page'));
 		}
 		add_submenu_page($page, __('Settings', 'wdsm'), __('Settings', 'wdsm'), $perms, 'wdsm', array($this, 'create_admin_page'));
@@ -79,7 +77,7 @@ class Wdsm_AdminPages {
 	 */
 	function reorder_menu () {
 		$opts = get_option('wdsm');
-		if (!@$opts['show_getting_started'] && $this->_getting_started_complete()) return;
+		if (!wdsm_getval($opts, 'show_getting_started') && $this->_getting_started_complete()) return;
 		global $menu, $submenu;
 		
 		foreach ($submenu as $idx => $item) {
@@ -97,7 +95,7 @@ class Wdsm_AdminPages {
 	 */
 	function create_getting_started_page () {
 		global $current_user;
-		$wdsm_tutorial = get_user_meta($current_user->id, 'wdsm_tutorial', true);
+		$wdsm_tutorial = get_user_meta($current_user->ID, 'wdsm_tutorial', true);
 		$wdsm_tutorial = $wdsm_tutorial ? $wdsm_tutorial : array();
 		include(WDSM_PLUGIN_BASE_DIR . '/lib/forms/getting_started.php');
 	}
@@ -107,27 +105,43 @@ class Wdsm_AdminPages {
 	 */
 	function handle_getting_started_redirects () {
 		global $current_user;
-		$wdsm_tutorial = get_user_meta($current_user->id, 'wdsm_tutorial', true);
+		$wdsm_tutorial = get_user_meta($current_user->ID, 'wdsm_tutorial', true);
 		$wdsm_tutorial = $wdsm_tutorial ? $wdsm_tutorial : array();
 		
-		$intent = @$_GET['intent'];
+		$intent = wdsm_getval($_GET, 'intent');
 		switch ($intent) {
 			case "settings":
 				$wdsm_tutorial['settings'] = 1;
-				update_user_meta($current_user->id, 'wdsm_tutorial', $wdsm_tutorial);
+				update_user_meta($current_user->ID, 'wdsm_tutorial', $wdsm_tutorial);
 				wp_redirect(admin_url('admin.php?page=wdsm&tutorial=1'));
 				exit;
 			case "add":
 				$wdsm_tutorial['add'] = 1;
-				update_user_meta($current_user->id, 'wdsm_tutorial', $wdsm_tutorial);
+				update_user_meta($current_user->ID, 'wdsm_tutorial', $wdsm_tutorial);
 				wp_redirect(admin_url('post-new.php?post_type=social_marketing_ad'));
 				exit;
 			case "insert":
 				$wdsm_tutorial['insert'] = 1;
-				update_user_meta($current_user->id, 'wdsm_tutorial', $wdsm_tutorial);
-				wp_redirect(admin_url('post-new.php'));
+				update_user_meta($current_user->ID, 'wdsm_tutorial', $wdsm_tutorial);
+				wp_redirect(admin_url('post-new.php?wdsm=first'));
 				exit;
 		}
+	}
+
+	/**
+	 * Redirect to Getting started page on first load.
+	 */
+	function welcome_first_time_user () {
+		if (is_network_admin()) return false; // Not applicable on network pages.
+		if ($this->_getting_started_complete()) return false; // User already saw this.
+		
+		$opts = get_option('wdsm');
+		if (!wdsm_getval($opts, 'welcome_redirect')) return false; // Not a first time user, move on.
+		
+		$opts['welcome_redirect'] = false;
+		update_option('wdsm', $opts);
+		wp_redirect(admin_url('admin.php?page=wdsm-get_started'));
+		die;
 	}
 	
 	/**
@@ -135,12 +149,12 @@ class Wdsm_AdminPages {
 	 */
 	private function _getting_started_complete () {
 		global $current_user;
-		$wdsm_tutorial = get_user_meta($current_user->id, 'wdsm_tutorial', true);
+		$wdsm_tutorial = get_user_meta($current_user->ID, 'wdsm_tutorial', true);
 		$wdsm_tutorial = $wdsm_tutorial ? $wdsm_tutorial : array();
 		return (
-			@$wdsm_tutorial['settings'] && 
-			@$wdsm_tutorial['add'] && 
-			@$wdsm_tutorial['insert']
+			wdsm_getval($wdsm_tutorial, 'settings') && 
+			wdsm_getval($wdsm_tutorial, 'add') && 
+			wdsm_getval($wdsm_tutorial, 'insert')
 		); 
 	}
 
@@ -163,7 +177,7 @@ li.menu-icon-social_marketing_ad div.wp-menu-image img {
 }
 </style>
 EoWdsmStyles;
-		if ('wdsm-get_started' == @$_GET['page'] || 'wdsm' == @$_GET['page'] || 'social_marketing_ad' == @$_GET['post_type']) {
+		if ('wdsm-get_started' == wdsm_getval($_GET, 'page') || 'wdsm' == wdsm_getval($_GET, 'page') || 'social_marketing_ad' == wdsm_getval($_GET, 'post_type')) {
 			wp_enqueue_style('wdsm-admin-style', WDSM_PLUGIN_URL . "/css/wdsm-admin.css");
 		}
 	}
@@ -172,7 +186,7 @@ EoWdsmStyles;
 	 * Inject basic javascript dataset, for consistency. 
 	 */
 	function js_print_scripts () {
-		if ('wdsm' == @$_GET['page'] || 'social_marketing_ad' == @$_GET['post_type']) {
+		if ('wdsm' == wdsm_getval($_GET, 'page') || 'social_marketing_ad' == wdsm_getval($_GET, 'post_type')) {
 			wp_enqueue_script('wdsm_editor', WDSM_PLUGIN_URL . '/js/admin.js', array('jquery'));
 		}
 		printf(
@@ -189,12 +203,13 @@ EoWdsmStyles;
 	 * Inject post editor button and handler javascript.
 	 */
 	function js_editor_button () {
-		if ('social_marketing_ad' == @$_GET['post_type']) return false; // Don't do this if we're on our own page
+		if ('social_marketing_ad' == wdsm_getval($_GET, 'post_type')) return false; // Don't do this if we're on our own page
 		global $post;
 		if ('social_marketing_ad' == @$post->post_type) return false; // Don't show on edit page either
 		
 		wp_enqueue_script('wdsm_editor', WDSM_PLUGIN_URL . '/js/editor-button.js', array('jquery'));
 		wp_localize_script('wdsm_editor', 'l10nWdsm', array(
+			'loading' => __('Loading... please hold on', 'wdsm'),
 			'add_ad' => __('Insert Social Ad', 'wdsm'),
 			'ad_title' => __('Title', 'wdsm'),
 			'ad_date' => __('Date', 'wdsm'),
@@ -250,8 +265,9 @@ EoWdsmStyles;
 	/**
 	 * Glues everything together.
 	 */
-	function add_hooks () {
+	private function _add_hooks () {
 		add_action('admin_init', array($this, 'handle_getting_started_redirects'));
+		add_action('admin_init', array($this, 'welcome_first_time_user'));
 		
 		// Register options and menu
 		add_action('admin_init', array($this, 'register_settings'));
