@@ -11,6 +11,14 @@
 			<div class="note">
 				<p><?php _e('Welcome to the Social Marketing Getting Started Guide.', 'wdsm'); ?></p>
 			</div>
+			<p><?php echo '' . 
+				'<p>' . __('Social Marketing allows you to create a ton of interest around your product or service by harnessing the real power of social networking. ', 'wdsm') . '</p>' .
+				'<ul>' .
+					'<li>' . __('Visitors are enticed by a <b>coupon, discount code, download</b> or other incentive', 'wdsm') . '</li>' .
+					'<li>' . __('Simply liking on facebook, retweeting, mentioning on google+ or linked in unlocks the incentive', 'wdsm') . '</li>' .
+					'<li>' . __('Add your marketing into any post/page easily through a <b>simple button</b> in the WordPress editor', 'wdsm') . '</li>' .
+				'</ul>' .
+			''; ?></p>
 			<ol class="wdsm-steps">
 				<li>
 					<?php if (wdsm_getval($wdsm_tutorial, 'settings')) { ?>
