@@ -217,6 +217,7 @@ EoWdsmStyles;
 			'ad_services' => __('Services', 'wdsm'),
 			'appearance' => __('Appearance', 'wdsm'),
 			'advanced' => __('Advanced', 'wdsm'),
+			'ads' => __('Adverts', 'wdsm'),
 			'add_blank' => __('Insert blank placeholder for an ad', 'wdsm'),
 			'or_select_below' => __('or select an Ad to insert from the ones listed below', 'wdsm'),
 			'dflt' => __('Default', 'wdsm'),

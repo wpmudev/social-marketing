@@ -12,7 +12,7 @@
 				<p><?php _e('Welcome to the Social Marketing Getting Started Guide.', 'wdsm'); ?></p>
 			</div>
 			<p><?php echo '' . 
-				'<p>' . __('Social Marketing allows you to create a ton of interest around your product or service by harnessing the real power of social networking. ', 'wdsm') . '</p>' .
+				'<p>' . __('Social Marketing allows you to create a ton of interest around your product or service by harnessing the real power of social networking.', 'wdsm') . '</p>' .
 				'<ul>' .
 					'<li>' . __('Visitors are enticed by a <b>coupon, discount code, download</b> or other incentive', 'wdsm') . '</li>' .
 					'<li>' . __('Simply liking on facebook, retweeting, mentioning on google+ or linked in unlocks the incentive', 'wdsm') . '</li>' .
@@ -54,6 +54,7 @@
 		</div>
 	</div>
 	
+<?php if (!defined('WPMUDEV_REMOVE_BRANDING') || !constant('WPMUDEV_REMOVE_BRANDING')) { ?>
 	<!-- More Help box -->
 	<div class="postbox">
 		<h3 class="hndle"><span><?php _e('Need More Help?', 'wdsm'); ?></span></h3>
@@ -66,6 +67,7 @@
 			</ul>
 		</div>
 	</div>
+<?php } ?>
 </div>
 
 </div>

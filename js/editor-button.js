@@ -29,6 +29,7 @@ function insertAtCursor(fld, text) {
 }
 
 function resize_tb () {
+	if (!$("#TB_ajaxContent #wdsm_ads").length) return false;
 	var height = $("#wdsm_ads").height() + 30;
 	if (height+200 > $(window).height()) {
 		height = $(window).height() - 200;
@@ -37,6 +38,8 @@ function resize_tb () {
 	$("#TB_window").height(
 		height + $("#TB_title").height() + 20
 	);
+	$("#TB_ajaxContent").width(450);
+	$("#TB_window").width(480);
 }
 	
 	
@@ -50,6 +53,7 @@ $('body').append(
 
 // Bind events
 $(document).bind('wdsm_selector_open', function () {
+	$(window).resize(resize_tb);
 	$("#wdsm_ads").html(
 		'<p id="wdsm-loading_message"><img src="' + _wdsm_data.root_url + '/img/ajax-loader.gif" >&nbsp;' + l10nWdsm.loading + '</p>'
 	);
@@ -57,8 +61,12 @@ $(document).bind('wdsm_selector_open', function () {
 	$.post(ajaxurl, {"action": "wdsm_list_ads"}, function (data) {
 		var html = '';
 		
+		html += '<div id="general_panel" class="panel current">';
+		
 		// Appearance
-		html += '<h4>' + l10nWdsm.appearance + '<span id="wdsm_advanced_trigger"><a href="#">' + l10nWdsm.advanced + '</a></span>' + '</h4>';
+		html += '<br /><fieldset>';
+		html += '<legend>' + l10nWdsm.appearance + '</legend>';
+		html += '<span id="wdsm_advanced_trigger"><a href="#">' + l10nWdsm.advanced + '</a></span>';
 		html += '<div class="wdsm_advanced">';
 		html += '<label for="wdsm_class">' + 
 			l10nWdsm.ad_class +
@@ -76,16 +84,28 @@ $(document).bind('wdsm_selector_open', function () {
 				'<option value="aligncenter">' + l10nWdsm.center + '&nbsp;</option>' +
 			'</select>';
 		html += '</div><br />';
+		html += '</fieldset>';
 		
+		html += '<br /><fieldset>';
+		html += '<legend>' + l10nWdsm.ads + '</legend>';
+		html += '<table width="100%">';
 		$.each(data, function (idx, ad) {
-			html += '<div class="wdsm-insertion_item">';
+			html += '<tr>';
+			html += '<td>';
 			html += '<b>' + ad.post_title + '</b>';
-			html += '<span class="wdsm-insertion_item-meta">';
+			html += '<div class="wdsm-insertion_item-meta">';
 			html += ('download_url' == ad.wdsm.type) ? l10nWdsm.download_url : l10nWdsm.coupon_code;			
-			html += '</span>';
+			html += '</div>';
+			html += '</td>';
+			html += '<td>';
 			html += '<a href="#" class="wdsm_insert_ad button">' + l10nWdsm.add_ad + ' <input type="hidden" value="' + ad.ID + '" /></a>';
-			html += '<div style="clear:both"></div></div>';
+			html += '</td>';
+			html += '</tr>';
 		});
+		html += '</table>';
+		html += '</fieldset>';
+		
+		html += '</div>';
 		
 		$("#wdsm_ads").html(html);
 		resize_tb();
@@ -111,6 +131,7 @@ $(".wdsm_insert_ad").live('click', function () {
 	if (window.tinyMCE && ! $('#content').is(':visible')) window.tinyMCE.execCommand("mceInsertContent", true, marker);
 	else insertAtCursor($("#content").get(0), marker);
 	tb_remove();
+	$(window).unbind('resize', resize_tb);
 	return false;
 });
 
@@ -119,7 +140,7 @@ var mbuttons_container = $('#media-buttons').length ? /*3.2*/ $('#media-buttons'
 if (!mbuttons_container.length) return;
 
 mbuttons_container.append('' + 
-	'<a onclick="return wdsm_openEditor();" title="' + l10nWdsm.add_ad + '" class="thickbox" id="add_advert" href="#TB_inline?width=640&height=594&inlineId=wdsm_ad_container">' +
+	'<a onclick="return wdsm_openEditor();" title="' + l10nWdsm.add_ad + '" class="thickbox" id="add_advert" href="#TB_inline?width=480&height=594&inlineId=wdsm_ad_container">' +
 		'<img onclick="return false;" alt="' + l10nWdsm.add_ad + '" src="' + _wdsm_data.root_url + '/img/menu_inactive.png">' +
 	'</a>'
 );

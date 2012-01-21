@@ -124,7 +124,7 @@ class WpmuDev_ContextualHelp {
 		
 		if (!isset($this->_pages['_global_'])) {
 			$screen_id = @$screen->id;
-			if (!@$this->_pages[$screen_id] || !@$this->_pages[$screen_id]['tabs']) return false;
+			if (!isset($this->_pages[$screen_id]) || !@$this->_pages[$screen_id] || !@$this->_pages[$screen_id]['tabs']) return false;
 			$info = $this->_pages[$screen_id];
 		} else {
 			$info = $this->_pages['_global_'];

@@ -50,11 +50,56 @@
 	margin-bottom: 2px;
 }
 .wdsm-insertion_item:hover {
-	background-color: #FFF8DC;
+	/*background-color: #FFF8DC;*/
 }
 .wdsm-insertion_item b {
 	display: block;
 }
 .wdsm_insert_ad {
 	float: right;
+}
+
+/* ----- TinyMCE styles, w/e ----- */
+#TB_window {
+	font-family:Verdana, Arial, Helvetica, sans-serif; font-size:11px;
+	scrollbar-3dlight-color:#F0F0EE;
+	scrollbar-arrow-color:#676662;
+	scrollbar-base-color:#F0F0EE;
+	scrollbar-darkshadow-color:#DDDDDD;
+	scrollbar-face-color:#E0E0DD;
+	scrollbar-highlight-color:#F0F0EE;
+	scrollbar-shadow-color:#F0F0EE;
+	scrollbar-track-color:#F5F5F5;
+	background:#F0F0EE;
+	padding:0;
+	margin:8px 8px 0 8px;
+}
+/* Panels */
+.panel_wrapper div.panel {display:none;}
+.panel_wrapper div.current {display:block; width:100%; height:300px; overflow:visible;}
+.panel_wrapper {border:1px solid #919B9C; border-top:0px; padding:10px; padding-top:5px; clear:both; background:white;}
+
+#TB_window fieldset {margin:0; padding:4px; border:1px solid #dfdfdf; font-family:Verdana, Arial; font-size:10px;}
+
+/* Buttons */
+#TB_window .wdsm_insert_ad.button {
+	border: 1px solid #bbb; 
+	margin:0; 
+	/*padding:0 0 1px;*/
+	padding: 2px 2px 0 2px;
+	font-weight:bold;
+	font-size: 10px !important;
+	height:24px;
+	line-height: 24px;
+	color:#000;
+	cursor:pointer;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	background-color: #eee; /* Fallback */
+	background-image: -ms-linear-gradient(bottom, #ddd, #fff); /* IE10 */
+	background-image: -moz-linear-gradient(bottom, #ddd, #fff); /* Firefox */
+	background-image: -o-linear-gradient(bottom, #ddd, #fff); /* Opera */
+	background-image: -webkit-gradient(linear, left bottom, left top, from(#ddd), to(#fff)); /* old Webkit */
+	background-image: -webkit-linear-gradient(bottom, #ddd, #fff); /* new Webkit */
+	background-image: linear-gradient(bottom, #ddd, #fff); /* proposed W3C Markup */
 }

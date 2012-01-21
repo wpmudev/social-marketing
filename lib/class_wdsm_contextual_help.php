@@ -25,14 +25,17 @@ class Wdsm_ContextualHelp {
 	}
 	
 	private function _set_up_sidebar () {
-		$this->_social_marketing_sidebar = '' .
-			'<h4>' . __('Social Marketing', 'wdsm') . '</h4>' .
-			'<ul>' .
-				'<li><a href="http://premium.wpmudev.org/project/social-marketing" target="_blank">' . __('Project page', 'wdsm') . '</a></li>' .
-				'<li><a href="http://premium.wpmudev.org/project/social-marketing/installation/" target="_blank">' . __('Installation and instructions page', 'wdsm') . '</a></li>' .
-				'<li><a href="http://premium.wpmudev.org/forums/tags/social-marketing/" target="_blank">' . __('Support forum', 'wdsm') . '</a></li>' .
-			'</ul>' . 
-		'';
+		$this->_social_marketing_sidebar = '<h4>' . __('Social Marketing', 'wdsm') . '</h4>';
+		if (defined('WPMUDEV_REMOVE_BRANDING') && constant('WPMUDEV_REMOVE_BRANDING')) {
+			$this->_social_marketing_sidebar .= '<p>' . __('Social Marketing allows you to create a ton of interest around your product or service by harnessing the real power of social networking.', 'wdsm') . '</p>';
+		} else {
+				$this->_social_marketing_sidebar .= '<ul>' .
+					'<li><a href="http://premium.wpmudev.org/project/social-marketing" target="_blank">' . __('Project page', 'wdsm') . '</a></li>' .
+					'<li><a href="http://premium.wpmudev.org/project/social-marketing/installation/" target="_blank">' . __('Installation and instructions page', 'wdsm') . '</a></li>' .
+					'<li><a href="http://premium.wpmudev.org/forums/tags/social-marketing/" target="_blank">' . __('Support forum', 'wdsm') . '</a></li>' .
+				'</ul>' . 
+			'';
+		}
 	}
 	
 	private function _initialize () {
@@ -56,7 +59,7 @@ class Wdsm_ContextualHelp {
 					'id' => 'wdsm-general',
 					'title' => __('General Info', 'wdsm'),
 					'content' => '' .
-						'<p>' . __('Social Marketing allows you to create a ton of interest around your product or service by harnessing the real power of social networking. ', 'wdsm') . '</p>' .
+						'<p>' . __('Social Marketing allows you to create a ton of interest around your product or service by harnessing the real power of social networking.', 'wdsm') . '</p>' .
 						'<p><b>' . __('Using Social Marketing on your site:', 'wdsm') . '</b></p>' .
 						'<ul>' .
 							'<li>' . __('Visitors are enticed by a <b>coupon, discount code, download</b> or other incentive', 'wdsm') . '</li>' .
@@ -109,7 +112,7 @@ class Wdsm_ContextualHelp {
 					'id' => 'wdsm-general',
 					'title' => __('General Info', 'wdsm'),
 					'content' => '' .
-						'<p>' . __('Social Marketing allows you to create a ton of interest around your product or service by harnessing the real power of social networking. ', 'wdsm') . '</p>' .
+						'<p>' . __('Social Marketing allows you to create a ton of interest around your product or service by harnessing the real power of social networking.', 'wdsm') . '</p>' .
 						'<p><b>' . __('Using Social Marketing on your site:', 'wdsm') . '</b></p>' .
 						'<ul>' .
 							'<li>' . __('Visitors are enticed by a <b>coupon, discount code, download</b> or other incentive', 'wdsm') . '</li>' .
@@ -155,7 +158,7 @@ class Wdsm_ContextualHelp {
 					'id' => 'wdsm-general',
 					'title' => __('General Info', 'wdsm'),
 					'content' => '' .
-						'<p>' . __('Social Marketing allows you to create a ton of interest around your product or service by harnessing the real power of social networking. ', 'wdsm') . '</p>' .
+						'<p>' . __('Social Marketing allows you to create a ton of interest around your product or service by harnessing the real power of social networking.', 'wdsm') . '</p>' .
 						'<p><b>' . __('Using Social Marketing on your site:', 'wdsm') . '</b></p>' .
 						'<ul>' .
 							'<li>' . __('Visitors are enticed by a <b>coupon, discount code, download</b> or other incentive', 'wdsm') . '</li>' .
@@ -188,7 +191,7 @@ class Wdsm_ContextualHelp {
 					'id' => 'wdsm-general',
 					'title' => __('General Info', 'wdsm'),
 					'content' => '' .
-						'<p>' . __('Social Marketing allows you to create a ton of interest around your product or service by harnessing the real power of social networking. ', 'wdsm') . '</p>' .
+						'<p>' . __('Social Marketing allows you to create a ton of interest around your product or service by harnessing the real power of social networking.', 'wdsm') . '</p>' .
 						'<p><b>' . __('Using Social Marketing on your site:', 'wdsm') . '</b></p>' .
 						'<ul>' .
 							'<li>' . __('Visitors are enticed by a <b>coupon, discount code, download</b> or other incentive', 'wdsm') . '</li>' .
