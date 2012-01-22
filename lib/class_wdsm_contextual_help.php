@@ -126,7 +126,7 @@ class Wdsm_ContextualHelp {
 					'id' => 'wdsm-creation',
 					'title' => __('Ad creation', 'wdsm'),
 					'content' => '' .
-						'<p>' . __('<b>Title</b> - Enter a title for your add. After you enter a title, you’ll see the permalink below, which you can edit.', 'wdsm') . '</p>' .
+						'<p>' . __('<b>Title</b> - Enter a title for your add. After you enter a title, you\'ll see the permalink below, which you can edit.', 'wdsm') . '</p>' .
 						'<p>' . __('<b>Ad Editor</b> - Enter the text for your ad. There are two modes of editing: Visual and HTML. Choose the mode by clicking on the appropriate tab. Visual mode gives you a WYSIWYG editor. Click the last icon in the row to get a second row of controls. The HTML mode allows you to enter raw HTML along with your ad text. You can insert media files by clicking the icons above the ad editor and following the directions. You can go to the distraction-free writing screen via the Fullscreen icon in Visual mode (second to last in the top row) or the Fullscreen button in HTML mode (last in the row). Once there, you can make buttons visible by hovering over the top area. Exit Fullscreen back to the regular ad editor.', 'wdsm') . '</p>' .
 						'<p>' . __('<b>Publish</b> - You can set the terms of publishing your ad in the Publish box. For best results we recommend leaving these at their default settings.  Publishing your ad does not make it immediately visible.  It only makes it available as a shortcode which you can then insert into any post, page or custom post type.', 'wdsm') . '</p>' .
 					''
