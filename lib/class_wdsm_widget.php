@@ -23,15 +23,7 @@ class Wdsm_WidgetAdvert extends WP_Widget {
 		$opt = get_option('wdsm');
 		$opt = $opt ? $opt : array();
 
-		if ('colorbox' == wdsm_getval($opt, 'popup_box')) {
-			wp_enqueue_script('wdsm-public', WDSM_PLUGIN_URL . '/js/public-cb.js');
-			if (!wdsm_getval($opt, 'internal_colorbox')) {
-				wp_enqueue_script('wdsm-colorbox', WDSM_PLUGIN_URL . '/js/external/jquery.colorbox-min.js');
-			}
-		} else {
-			add_thickbox();
-			wp_enqueue_script('wdsm-public', WDSM_PLUGIN_URL . '/js/public-tb.js');
-		}
+		wp_enqueue_script('wdsm-public', WDSM_PLUGIN_URL . '/js/public.js');
 
 		$have_js = wdsm_getval($opt, 'have_js');
 		foreach ($wdsm->get_services() as $id=>$service) {
@@ -39,7 +31,10 @@ class Wdsm_WidgetAdvert extends WP_Widget {
 			if (!(int)$have_js[$id]) $wdsm->add_service_js($id);
 		}
 
-		printf('<script type="text/javascript">var _wdsm_ajax_url="%s";</script>', admin_url('admin-ajax.php'));
+		printf(
+			'<script type="text/javascript">var _wdsm_data={"ajax_url": "%s", "root_url": "%s"};</script>', 
+			admin_url('admin-ajax.php'), WDSM_PLUGIN_URL
+		);
 	}
 		
 	function enqueue_css_dependencies () {
@@ -47,25 +42,11 @@ class Wdsm_WidgetAdvert extends WP_Widget {
 		if (is_singular()) return false;
 		if (!is_active_widget(false, false, $this->id_base)) return false;
 		
-		$wdsm = Wdsm_SocialMarketing::get_instance();
 		$opt = get_option('wdsm');
 		$opt = $opt ? $opt : array();
 
-		if ('colorbox' == wdsm_getval($opt, 'popup_box')) {
-			if (!wdsm_getval($opt, 'internal_colorbox')) {
-				wp_enqueue_style('wdsm-colorbox', WDSM_PLUGIN_URL . '/css/external/colorbox.css');
-			}
-		} else {
-			wp_enqueue_style('thickbox');
-		}
-
 		if (!current_theme_supports('wdsm')) {
-			wp_enqueue_style('wdsm-public', WDSM_PLUGIN_URL . "/css/public.css");
-			if (wdsm_getval($opt, 'theme')) {
-				$theme = preg_replace('/[^-_a-z0-9]/', '', strtolower(wdsm_getval($opt, 'theme')));
-				if (!file_exists(WDSM_PLUGIN_BASE_DIR . "/css/themes/{$theme}.css")) return false;
-				wp_enqueue_style('wdsm-theme', WDSM_PLUGIN_URL . "/css/themes/{$theme}.css");
-			}
+			wp_enqueue_style('wdsm-public', WDSM_PLUGIN_URL . "/css/wdsm.css");
 		}
 	}
 

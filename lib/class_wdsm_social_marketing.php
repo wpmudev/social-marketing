@@ -141,6 +141,14 @@ class Wdsm_SocialMarketing {
 	 * Registers CPT.
 	 */
 	public function register_post_type () {
+		$supports = apply_filters(
+			'wdsm-social_marketing-post_type-supports',
+			array('title', 'editor')
+		);
+		// Force required support
+		if (!in_array('title', $supports)) $supports[] = 'title';
+		if (!in_array('editor', $supports)) $supports[] = 'editor';
+		
 		register_post_type('social_marketing_ad', array(
 			'labels' => array(
 				'name' => __('Social Marketing', 'wdsm'),
@@ -150,9 +158,7 @@ class Wdsm_SocialMarketing {
 			),
 			'menu_icon' => WDSM_PLUGIN_URL . '/img/menu_inactive.png',
 			'public' => true,
-			'supports' => array(
-				'title', 'editor'
-			),
+			'supports' => $supports,
 			'rewrite' => true,
 		));
 	}
