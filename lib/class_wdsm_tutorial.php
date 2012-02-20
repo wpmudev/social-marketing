@@ -31,7 +31,7 @@ class Wdsm_Tutorial {
 	);
 	
 	private function __construct () {
-		if (!class_exists('')) require_once WDSM_PLUGIN_BASE_DIR . '/lib/external/pointers_tutorial.php';
+		if (!class_exists('Pointer_Tutorial')) require_once WDSM_PLUGIN_BASE_DIR . '/lib/external/pointers_tutorial.php';
 		$this->_edit_tutorial = new Pointer_Tutorial('wdsm-edit', __('Social Marketing tutorial', 'wdsm'), false, false);
 		$this->_setup_tutorial = new Pointer_Tutorial('wdsm-setup', __('Setup tutorial', 'wdsm'), false, false);
 		$this->_insert_tutorial = new Pointer_Tutorial('wdsm-insert', __('Insert tutorial', 'wdsm'), false, false);
@@ -81,8 +81,8 @@ class Wdsm_Tutorial {
 	
 	private function _init_tutorial ($steps) {
 		$this->_edit_tutorial->set_textdomain('wdsm');
-		$this->_setup_tutorial->set_capability('manage_options');
 		$this->_edit_tutorial->set_textdomain('wdsm');
+		$this->_setup_tutorial->set_capability('manage_options');
 		$this->_setup_tutorial->set_capability('manage_options');
 		
 		foreach ($steps as $step) {

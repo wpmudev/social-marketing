@@ -276,11 +276,11 @@ class Wdsm_SocialMarketing {
 	 */
 	public function save_meta () {
 		global $post;
-		// If we have Post Indexer present, remove the post save action for the moment.
-		if (function_exists('post_indexer_post_insert_update')) {
-			remove_action('save_post', 'post_indexer_post_insert_update');
-		}
 		if (wdsm_getval($_POST, 'wdsm')) {
+			// If we have Post Indexer present, remove the post save action for the moment.
+			if (function_exists('post_indexer_post_insert_update')) {
+				remove_action('save_post', 'post_indexer_post_insert_update');
+			}
 			update_post_meta($post->ID, "wdsm", $_POST["wdsm"]);
 		}
 	}
