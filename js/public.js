@@ -22,6 +22,12 @@ var Wdsm_Popup = function () {
 				"z-index": 999998
 			})
 		;
+		$root.css("max-height", "none");
+		if ($root.height() > $(window).height()) $root.css({
+			"max-height": $(window).height()-30,
+			"overflow-y": "scroll"
+		});
+		else $root.css("overflow-y", "hidden");
 		$root
 			.css({
 				"position": "fixed",

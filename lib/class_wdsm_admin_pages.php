@@ -246,9 +246,9 @@ EoWdsmStyles;
 		$result = $ad->wdsm->result[$type];
 		header('Content-type: application/json');
 		echo json_encode(array(
-			"text" => $ad->wdsm->share_text,
+			"text" => apply_filters('wdsm-show_code-share_text', do_shortcode($ad->wdsm->share_text), $ad, $id),
 			"type" => $type,
-			"result" => $result,
+			"result" => apply_filters('wdsm-show_code-result', do_shortcode($result), $ad, $id),
 		));
 		exit();
 	}

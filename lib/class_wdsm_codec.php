@@ -29,6 +29,8 @@ class Wdsm_Codec {
 			'container_class' => false,
 		), $args);
 
+		$this->_wdsm->late_bind_frontend_dependencies();
+
 		$ad = false;
 		if ($args['id']) {
 			$ad = $this->_wdsm->get_ad($args['id']);

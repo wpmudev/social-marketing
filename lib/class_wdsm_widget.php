@@ -13,44 +13,21 @@ class Wdsm_WidgetAdvert extends WP_Widget {
 	
 	function enqueue_js_dependencies () {
 		if (is_admin()) return false;
-		if (is_singular()) return false;
 		if (!is_active_widget(false, false, $this->id_base)) return false;
 		
 		$wdsm = Wdsm_SocialMarketing::get_instance();
-		
-		// JS
-		wp_enqueue_script('jquery');
-		$opt = get_option('wdsm');
-		$opt = $opt ? $opt : array();
-
-		wp_enqueue_script('wdsm-public', WDSM_PLUGIN_URL . '/js/public.js');
-
-		$have_js = wdsm_getval($opt, 'have_js');
-		foreach ($wdsm->get_services() as $id=>$service) {
-			$wdsm->add_service_handler_js($id);
-			if (!(int)$have_js[$id]) $wdsm->add_service_js($id);
-		}
-
-		printf(
-			'<script type="text/javascript">var _wdsm_data={"ajax_url": "%s", "root_url": "%s"};</script>', 
-			admin_url('admin-ajax.php'), WDSM_PLUGIN_URL
-		);
+		$wdsm->include_frontend_javascript();
 	}
 		
 	function enqueue_css_dependencies () {
 		if (is_admin()) return false;
-		if (is_singular()) return false;
 		if (!is_active_widget(false, false, $this->id_base)) return false;
-		
-		$opt = get_option('wdsm');
-		$opt = $opt ? $opt : array();
 
-		if (!current_theme_supports('wdsm')) {
-			wp_enqueue_style('wdsm-public', WDSM_PLUGIN_URL . "/css/wdsm.css");
-		}
+		$wdsm = Wdsm_SocialMarketing::get_instance();
+		$wdsm->include_frontend_stylesheet();
 	}
 
-	function form($instance) {
+	function form ($instance) {
 		$title = esc_attr(wdsm_getval($instance, 'title'));
 		$ad_id = wdsm_getval($instance, 'ad_id');
 
@@ -77,7 +54,7 @@ class Wdsm_WidgetAdvert extends WP_Widget {
 		echo $html;
 	}
 
-	function update($new_instance, $old_instance) {
+	function update ($new_instance, $old_instance) {
 		$instance = $old_instance;
 		$instance['title'] = strip_tags($new_instance['title']);
 		$instance['ad_id'] = strip_tags($new_instance['ad_id']);
@@ -85,7 +62,7 @@ class Wdsm_WidgetAdvert extends WP_Widget {
 		return $instance;
 	}
 
-	function widget($args, $instance) {
+	function widget ($args, $instance) {
 		extract($args);
 		$title = apply_filters('widget_title', $instance['title']);
 

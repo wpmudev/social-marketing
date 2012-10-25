@@ -108,6 +108,21 @@ class Wdsm_AdminFormRenderer {
 			'<label for="wdsm-no-theme">' . __('Do not load styles, my theme already has all the styles I need', 'wdsm') . '</label>' .
 			$this->_help->add_tip(__('Check this option if you have styles you wish to use instead of the default ones.', 'wdsm')) .
 		'</p>';
+
+		// Late binding
+		echo '<div>' .
+			'<label for="">' . __('Enable lazy dependency loading?', 'wdsm') . '</label>&nbsp;' .
+			$this->_create_checkbox('enable_late_binding') .
+			$this->_help->add_tip(__('Lazy dependency loading can improve your site load times by requiring resources as they are needed.', 'wdsm')) .
+		'</div>';
+
+		$wdsm = Wdsm_SocialMarketing::get_instance();
+		$hook = esc_attr($wdsm->get_late_binding_hook());
+		echo '<div>' .
+			'<label for="wdsm-late_binding_hook">' . __('Lazy loading hook <small>(advanced)</small>:', 'wdsm') . '</label>&nbsp;' .
+			'<input type="text" name="wdsm[late_binding_hook]" id="wdsm-late_binding_hook" value="' . $hook . '" />' .
+			$this->_help->add_tip(__('Lazy dependency loading relies on footer hook to deploy properly. If your theme does not implement the default hook, use this field to set your custom one.', 'wdsm')) .
+		'</div>';
 	}
 	
 	function create_getting_started_box () {

@@ -5,6 +5,13 @@ Change Log:
 ----------------------------------------------------------------------
 ----------------------------------------------------------------------
 
+1.2 - 2012-10-25
+----------------------------------------------------------------------
+- Allowing shortcodes in "Thank you" text and in response results.
+- Added lazy dependency injection options.
+- Shifted responsibilities for dependencies loading.
+- Exposed share text and result for filtering on successful share.
+
 1.1.2 - 2012-02-20
 ----------------------------------------------------------------------
 - Proper class inclusion shielding.

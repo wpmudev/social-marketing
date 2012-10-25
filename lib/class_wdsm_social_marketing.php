@@ -32,6 +32,8 @@ class Wdsm_SocialMarketing {
 	 * Initialized in constructor, for l10n support in labels.
 	 */
 	private $_styles = array();
+
+	private $_data;
 	
 	private static $_instance;
 
@@ -42,6 +44,7 @@ class Wdsm_SocialMarketing {
 			'grey' => __('Grey', 'wdsm'),
 			'red' => __('Red', 'wdsm'),
 		);
+		$this->_data = get_option('wdsm', array());
 		$this->_load_dependencies();
 	}
 
@@ -283,6 +286,62 @@ class Wdsm_SocialMarketing {
 			}
 			update_post_meta($post->ID, "wdsm", $_POST["wdsm"]);
 		}
+	}
+
+/* ----- Front-end dependencies ----- */
+
+	public function include_frontend_javascript () {
+		if (defined('WDSM_FLAG_JAVASCRIPT_LOADED')) return false;
+		wp_enqueue_script('jquery');
+
+		wp_enqueue_script('wdsm-public', WDSM_PLUGIN_URL . '/js/public.js');
+
+		$have_js = wdsm_getval($this->_data, 'have_js');
+		foreach ($this->get_services() as $id=>$service) {
+			$this->add_service_handler_js($id);
+			if (!(int)$have_js[$id]) $this->add_service_js($id);
+		}
+
+		printf(
+			'<script type="text/javascript">var _wdsm_data={"ajax_url": "%s", "root_url": "%s"};</script>', 
+			admin_url('admin-ajax.php'), WDSM_PLUGIN_URL
+		);
+		define('WDSM_FLAG_JAVASCRIPT_LOADED', true, true);
+	}
+	
+	public function include_frontend_stylesheet () {
+		if (defined('WDSM_FLAG_STYLESHEET_LOADED')) return false;
+
+		if (!current_theme_supports('wdsm')) {
+			wp_enqueue_style('wdsm-public', WDSM_PLUGIN_URL . "/css/wdsm.css");
+		}
+		define('WDSM_FLAG_STYLESHEET_LOADED', true, true);
+	}
+
+	public function get_late_binding_hook () {
+		$hook = wdsm_getval($this->_data, 'late_binding_hook');
+		$hook = $hook ? $hook : 'wp_footer';
+		$hook = defined('WDSM_FOOTER_HOOK') && WDSM_FOOTER_HOOK
+			? WDSM_FOOTER_HOOK
+			: $hook
+		;
+		return apply_filters('wdsm-core-footer_hook', $hook);
+	}
+
+	/**
+	 * Used for late binding dependencies.
+	 */
+	public function late_bind_frontend_dependencies () {
+		if (defined('WDSM_FLAG_LATE_INCLUSION_BOUND')) return false;
+		if (defined('WDSM_FLAG_JAVASCRIPT_LOADED') && defined('WDSM_FLAG_STYLESHEET_LOADED')) return false;
+		
+		$hook = $this->get_late_binding_hook();
+		if (!$hook) return false;
+
+		add_action($hook, array($this, 'include_frontend_stylesheet'), 997);
+		add_action($hook, array($this, 'include_frontend_javascript'), 998);
+
+		define('WDSM_FLAG_LATE_INCLUSION_BOUND', true, true);
 	}
 	
 /* ----- Model procedures ----- */
