@@ -73,7 +73,7 @@ class Wdsm_WidgetAdvert extends WP_Widget {
 		echo $before_widget;
 		if ($title) echo $before_title . $title . $after_title;
 
-		echo $codec->process_ad_code(array('id'=>$ad_id), 'LALALA', 'forced');
+		echo $codec->process_ad_code(array('id'=>$ad_id), '', 'forced');
 		echo $after_widget;
 	}
 

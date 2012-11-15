@@ -21,13 +21,17 @@ class Wdsm_Codec {
 	 * Main shortcode processing handler.
 	 */
 	public function process_ad_code ($args, $content='', $forced=false) {
-		if (!is_singular() && $forced !== 'forced') return '';
 		$args = shortcode_atts(array(
 			'id' => false,
 			'slug' => false,
 			'class' => false,
 			'container_class' => false,
+			'forced' => false,
 		), $args);
+		$forced = $forced && $forced === 'forced';
+		if (!$forced) $forced = isset($args['forced']) && in_array($args['forced'], array('1', 'yes', 'on', 'true'));
+		
+		if (!is_singular() && !$forced) return '';
 
 		$this->_wdsm->late_bind_frontend_dependencies();
 

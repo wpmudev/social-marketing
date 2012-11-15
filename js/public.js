@@ -94,7 +94,7 @@ var Wdsm_Popup = function () {
 			'<div id="wdsm-popup_overlay" style="display: none;"></div>' +
 			'<div id="wdsm-popup_wrapper" style="display:none;">' + 
 				'<div id="wdsm-popup_wrapper-inside">' + 
-					'<div id="wdsm-popup_close">Close</div>' +
+					'<div id="wdsm-popup_close">' + _wdsm_data.strings.close_button + '</div>' +
 					'<div id="wdsm-popup_body"></div>' +
 				'</div>' +
 			'</div>'
@@ -145,7 +145,7 @@ $(document).bind("wdsm_button_action", function (e, service) {
 	}, function (data) {
 		var html = '<div class="wdsm_share_text">' + data.text + '</div>';
 		if ("download_url" == data.type) {
-			html += '<p><a href="' + data.result + '" class="button"><span><strong>Download</strong></span></a></p>';
+			html += '<p><a id="wdsm-ad_download_link-' + ad_id + '" href="' + data.result + '" class="button"><span><strong>' + _wdsm_data.strings.download_button + '</strong></span></a></p>';
 		} else {
 			html += '<p><textarea cols="32" rows="12">' + data.result + '</textarea></p>';
 		}

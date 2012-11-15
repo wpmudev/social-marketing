@@ -212,7 +212,8 @@ add_theme_support('wdsm');
 #wdsm-popup_body {
 	color: #737373;
 	padding: 10px;
-	overflow: hidden;
+	/*overflow: hidden;*/
+	overflow: auto;
 }
 .wdsm-service-waiting_response {
 	clear: both;

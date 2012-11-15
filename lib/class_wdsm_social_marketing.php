@@ -302,10 +302,16 @@ class Wdsm_SocialMarketing {
 			if (!(int)$have_js[$id]) $this->add_service_js($id);
 		}
 
-		printf(
-			'<script type="text/javascript">var _wdsm_data={"ajax_url": "%s", "root_url": "%s"};</script>', 
-			admin_url('admin-ajax.php'), WDSM_PLUGIN_URL
+		$wdsm_data = array(
+			"ajax_url" => admin_url('admin-ajax.php'),
+			"root_url" => WDSM_PLUGIN_URL,
+			"strings" => array(
+				"close_button" => esc_js(__('Close', 'wdsm')), 
+				"download_button" => esc_js(__('Download', 'wdsm')),
+			),
 		);
+		$wdsm_data = apply_filters('wdsm-javascript-global_data', $wdsm_data);
+		echo '<script type="text/javascript">var _wdsm_data=' . json_encode($wdsm_data) . ';</script>';
 		define('WDSM_FLAG_JAVASCRIPT_LOADED', true, true);
 	}
 	
@@ -338,8 +344,8 @@ class Wdsm_SocialMarketing {
 		$hook = $this->get_late_binding_hook();
 		if (!$hook) return false;
 
-		add_action($hook, array($this, 'include_frontend_stylesheet'), 997);
-		add_action($hook, array($this, 'include_frontend_javascript'), 998);
+		add_action($hook, array($this, 'include_frontend_stylesheet'), 18);
+		add_action($hook, array($this, 'include_frontend_javascript'), 19);
 
 		define('WDSM_FLAG_LATE_INCLUSION_BOUND', true, true);
 	}
