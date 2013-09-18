@@ -189,7 +189,7 @@ add_theme_support('wdsm');
 	opacity: 0.75;
 }
 #wdsm-popup_wrapper {
-	overflow: hidden;
+	overflow: visible !important;
 	background-color: #f8f8f8;
 	padding: 4px;
 	border: 1px solid #ddd;
@@ -213,7 +213,7 @@ add_theme_support('wdsm');
 	color: #737373;
 	padding: 10px;
 	/*overflow: hidden;*/
-	overflow: auto;
+	overflow: visible;
 }
 .wdsm-service-waiting_response {
 	clear: both;
@@ -247,3 +247,12 @@ add_theme_support('wdsm');
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
 }
+
+.wdsm_button.wdsm_facebook_button {
+	overflow: visible;
+}
+
+.fb_iframe_widget iframe{
+       max-width: inherit !important
+}
+

@@ -134,6 +134,8 @@ class Wdsm_AdminPages {
 	function welcome_first_time_user () {
 		if (is_network_admin()) return false; // Not applicable on network pages.
 		if ($this->_getting_started_complete()) return false; // User already saw this.
+		$perms = is_multisite() ? 'manage_network_options' : 'manage_options';
+		if (!current_user_can($perms)) return false; // Don't redirect people that can't deal with this
 		
 		$opts = get_option('wdsm');
 		if (!wdsm_getval($opts, 'welcome_redirect')) return false; // Not a first time user, move on.

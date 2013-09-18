@@ -3,9 +3,10 @@
 Plugin Name: Social Marketing
 Plugin URI: http://premium.wpmudev.org/project/social-marketing
 Description: Marketing on social networks.
-Version: 1.2.1
+Version: 1.2.2
 Author: Incsub
 Author URI: http://premium.wpmudev.org
+Text Domain: wdsm
 WDP ID: 253
 
 Copyright 2009-2011 Incsub (http://incsub.com)
@@ -23,18 +24,6 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
-
-///////////////////////////////////////////////////////////////////////////
-/* -------------------- Update Notifications Notice -------------------- */
-if ( !function_exists( 'wdp_un_check' ) ) {
-	add_action( 'admin_notices', 'wdp_un_check', 5 );
-	add_action( 'network_admin_notices', 'wdp_un_check', 5 );
-	function wdp_un_check() {
-		if ( !class_exists( 'WPMUDEV_Update_Notifications' ) && current_user_can( 'install_plugins' ) )
-			echo '<div class="error fade"><p>' . __('Please install the latest version of <a href="http://premium.wpmudev.org/project/update-notifications/" title="Download Now &raquo;">our free Update Notifications plugin</a> which helps you stay up-to-date with the most stable, secure versions of WPMU DEV themes and plugins. <a href="http://premium.wpmudev.org/wpmu-dev/update-notifications-plugin-information/">More information &raquo;</a>', 'wpmudev') . '</a></p></div>';
-	}
-}
-/* --------------------------------------------------------------------- */
 
 define ('WDSM_PLUGIN_SELF_DIRNAME', basename(dirname(__FILE__)), true);
 
@@ -61,6 +50,9 @@ if (is_multisite() && defined('WPMU_PLUGIN_URL') && defined('WPMU_PLUGIN_DIR') &
 }
 $textdomain_handler('wdsm', false, WDSM_PLUGIN_SELF_DIRNAME . '/languages/');
 
+if (file_exists(WDSM_PLUGIN_BASE_DIR . '/lib/external/wpmudev-dash-notification.php')) {
+	require_once WDSM_PLUGIN_BASE_DIR . '/lib/external/wpmudev-dash-notification.php';
+}
 
 require_once WDSM_PLUGIN_BASE_DIR . '/lib/class_wdsm_installer.php';
 Wdsm_Installer::check();
