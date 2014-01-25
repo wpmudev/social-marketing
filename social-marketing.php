@@ -4,13 +4,13 @@ Plugin Name: Social Marketing
 Plugin URI: http://premium.wpmudev.org/project/social-marketing
 Description: Marketing on social networks.
 Version: 1.2.2
-Author: Incsub
+Author: WPMU DEV
 Author URI: http://premium.wpmudev.org
 Text Domain: wdsm
 WDP ID: 253
 
 Copyright 2009-2011 Incsub (http://incsub.com)
-
+Author - Ve Bailovity (Incsub)
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License (Version 2 - GPLv2) as published by
 the Free Software Foundation.
