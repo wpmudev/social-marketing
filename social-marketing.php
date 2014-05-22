@@ -36,12 +36,12 @@ if (is_multisite() && defined('WPMU_PLUGIN_URL') && defined('WPMU_PLUGIN_DIR') &
 } else if (defined('WP_PLUGIN_URL') && defined('WP_PLUGIN_DIR') && file_exists(WP_PLUGIN_DIR . '/' . WDSM_PLUGIN_SELF_DIRNAME . '/' . basename(__FILE__))) {
 	define ('WDSM_PLUGIN_LOCATION', 'subfolder-plugins', true);
 	define ('WDSM_PLUGIN_BASE_DIR', WP_PLUGIN_DIR . '/' . WDSM_PLUGIN_SELF_DIRNAME, true);
-	define ('WDSM_PLUGIN_URL', WP_PLUGIN_URL . '/' . WDSM_PLUGIN_SELF_DIRNAME, true);
+	define ('WDSM_PLUGIN_URL', plugins_url(WDSM_PLUGIN_SELF_DIRNAME), true);
 	$textdomain_handler = 'load_plugin_textdomain';
 } else if (defined('WP_PLUGIN_URL') && defined('WP_PLUGIN_DIR') && file_exists(WP_PLUGIN_DIR . '/' . basename(__FILE__))) {
 	define ('WDSM_PLUGIN_LOCATION', 'plugins', true);
 	define ('WDSM_PLUGIN_BASE_DIR', WP_PLUGIN_DIR, true);
-	define ('WDSM_PLUGIN_URL', WP_PLUGIN_URL, true);
+	define ('WDSM_PLUGIN_URL', plugins_url(), true);
 	$textdomain_handler = 'load_plugin_textdomain';
 } else {
 	// No textdomain is loaded because we can't determine the plugin location.
