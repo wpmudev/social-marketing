@@ -159,7 +159,7 @@ class Wdsm_SocialMarketing {
 				'add_new_item' => __('Add new Social Marketing Advert', 'wdsm'),
 				'edit_item' => __('Edit Social Marketing Advert', 'wdsm'),
 			),
-			'menu_icon' => WDSM_PLUGIN_URL . '/img/menu_inactive.png',
+			'menu_icon' => 'dashicons-share-alt',
 			'public' => true,
 			'supports' => $supports,
 			'rewrite' => true,

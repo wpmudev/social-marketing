@@ -10,7 +10,7 @@ class Wdsm_LinkedInService extends Wdsm_Service {
 	}
 
 	public function add_js () {
-		echo '<script src="http://platform.linkedin.com/in.js" type="text/javascript"></script>';
+		//echo '<script src="http://platform.linkedin.com/in.js" type="text/javascript"></script>';
 	}
 
 	public function add_handler_js () {
@@ -24,6 +24,14 @@ class Wdsm_LinkedInService extends Wdsm_Service {
 	}
 
 	private function _render_button ($ad) {
-		return "<div class='wdsm_button wdsm_linkedin_button'><script type='IN/Share' data-counter='top' data-url='{$ad->wdsm->url}' data-onsuccess='wdsm_linkedin_callback' data-title='TITLE'></script></div>";
+		ob_start();
+		?>
+			<script src="//platform.linkedin.com/in.js" type="text/javascript">
+ 				 lang: en_US
+			</script>
+			<script type="IN/Share" data-url="<?php echo esc_url( $ad->wdsm->url ); ?>" data-onsuccess="wdsm_linkedin_callback" data-counter="top"></script>
+			<div class='wdsm_button wdsm_linkedin_button'></div>
+		<?php
+		return ob_get_clean();
 	}
 }

@@ -132,6 +132,7 @@ $(".wdsm_action_link").click(function () {
 });
 
 $(document).bind("wdsm_button_action", function (e, service) {
+	alert();
 	var ad_id = popup.find("input.wdsm_ad_id").val();
 	var $services = popup.find(".wdsm_services");
 	$services.after(

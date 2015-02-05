@@ -165,20 +165,6 @@ class Wdsm_AdminPages {
 	 * CPT icons are injected inline, so we get the paths right.
 	 */
 	function css_print_styles () {
-		$base_url = WDSM_PLUGIN_URL;
-		echo <<<EoWdsmStyles
-<style type="text/css">
-li.menu-icon-social_marketing_ad div.wp-menu-image {
-	background: url($base_url/img/menu_inactive.png) no-repeat center;
-}
-li.menu-icon-social_marketing_ad:hover div.wp-menu-image, li.menu-icon-social_marketing_ad.wp-has-current-submenu div.wp-menu-image {
-    background: url($base_url/img/menu_active.png) no-repeat center;
-}
-li.menu-icon-social_marketing_ad div.wp-menu-image img {
-    display: none;
-}
-</style>
-EoWdsmStyles;
 		if ('wdsm-get_started' == wdsm_getval($_GET, 'page') || 'wdsm' == wdsm_getval($_GET, 'page') || 'social_marketing_ad' == wdsm_getval($_GET, 'post_type')) {
 			wp_enqueue_style('wdsm-admin-style', WDSM_PLUGIN_URL . "/css/wdsm-admin.css");
 		}
@@ -199,40 +185,6 @@ EoWdsmStyles;
 			</script>',
 			WDSM_PLUGIN_URL
 		);
-	}
-
-	/**
-	 * Inject post editor button and handler javascript.
-	 */
-	function js_editor_button () {
-		if ('social_marketing_ad' == wdsm_getval($_GET, 'post_type')) return false; // Don't do this if we're on our own page
-		global $post;
-		if ('social_marketing_ad' == @$post->post_type) return false; // Don't show on edit page either
-		
-		wp_enqueue_script('wdsm_editor', WDSM_PLUGIN_URL . '/js/editor-button.js', array('jquery'));
-		wp_localize_script('wdsm_editor', 'l10nWdsm', array(
-			'loading' => __('Loading... please hold on', 'wdsm'),
-			'add_ad' => __('Insert Social Ad', 'wdsm'),
-			'ad_title' => __('Title', 'wdsm'),
-			'ad_date' => __('Date', 'wdsm'),
-			'ad_type' => __('Type', 'wdsm'),
-			'ad_services' => __('Services', 'wdsm'),
-			'appearance' => __('Appearance', 'wdsm'),
-			'advanced' => __('Advanced', 'wdsm'),
-			'ads' => __('Adverts', 'wdsm'),
-			'add_blank' => __('Insert blank placeholder for an ad', 'wdsm'),
-			'or_select_below' => __('or select an Ad to insert from the ones listed below', 'wdsm'),
-			'dflt' => __('Default', 'wdsm'),
-			'ad_class' => __('Additional CSS classes (link)', 'wdsm'),
-			'ad_container_class' => __('Additional CSS classes (container)', 'wdsm'),
-			'download_url' => __('Download URL', 'wdsm'),
-			'coupon_code' => __('Coupon Code', 'wdsm'),
-			'ad_alignment' => __('Alignment', 'wdsm'),
-			'default_alignment' => __('Default', 'wdsm'),
-			'left' => __('Left', 'wdsm'),
-			'right' => __('Right', 'wdsm'),
-			'center' => __('Center', 'wdsm'),
-		));
 	}
 
 /* ----- AJAX request handlers ----- */
@@ -281,11 +233,57 @@ EoWdsmStyles;
 		add_action('admin_print_scripts', array($this, 'js_print_scripts'));
 		add_action('admin_print_styles', array($this, 'css_print_styles'));
 
-		add_action('admin_print_scripts-post.php', array($this, 'js_editor_button'));
-		add_action('admin_print_scripts-post-new.php', array($this, 'js_editor_button'));
-
 		add_action('wp_ajax_wdsm_show_code', array($this, 'json_show_code'));
 		add_action('wp_ajax_nopriv_wdsm_show_code', array($this, 'json_show_code'));
 		add_action('wp_ajax_wdsm_list_ads', array($this, 'json_list_ads'));
+
+		add_action( 'media_buttons', array( $this, 'media_buttons' ), 50 );
+		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_editor_scripts' ) );
+	}
+
+	function enqueue_editor_scripts() {
+		wp_enqueue_script('wdsm_editor', WDSM_PLUGIN_URL . '/js/editor-button.js', array('jquery'));
+		wp_localize_script('wdsm_editor', 'l10nWdsm', array(
+			'loading' => __('Loading... please hold on', 'wdsm'),
+			'add_ad' => __('Insert Social Ad', 'wdsm'),
+			'ad_title' => __('Title', 'wdsm'),
+			'ad_date' => __('Date', 'wdsm'),
+			'ad_type' => __('Type', 'wdsm'),
+			'ad_services' => __('Services', 'wdsm'),
+			'appearance' => __('Appearance', 'wdsm'),
+			'advanced' => __('Advanced', 'wdsm'),
+			'ads' => __('Adverts', 'wdsm'),
+			'add_blank' => __('Insert blank placeholder for an ad', 'wdsm'),
+			'or_select_below' => __('or select an Ad to insert from the ones listed below', 'wdsm'),
+			'dflt' => __('Default', 'wdsm'),
+			'ad_class' => __('Additional CSS classes (link)', 'wdsm'),
+			'ad_container_class' => __('Additional CSS classes (container)', 'wdsm'),
+			'download_url' => __('Download URL', 'wdsm'),
+			'coupon_code' => __('Coupon Code', 'wdsm'),
+			'ad_alignment' => __('Alignment', 'wdsm'),
+			'default_alignment' => __('Default', 'wdsm'),
+			'left' => __('Left', 'wdsm'),
+			'right' => __('Right', 'wdsm'),
+			'center' => __('Center', 'wdsm'),
+		));
+	}
+
+	function media_buttons( $editor_id = 'content' ) {
+		global $post;
+		
+		if ('social_marketing_ad' == wdsm_getval( $_GET, 'post_type' ) ) 
+			return false;
+		
+		if ( 'social_marketing_ad' == @$post->post_type ) 
+			return false;
+
+		printf( '<a href="#TB_inline?width=480&amp;inlineId=wdsm_ad_container&amp;width=753&amp;height=48" onclick="return wdsm_openEditor();" id="add_advert" class="button thickbox" data-editor="%s" title="%s">
+				<span class="wp-media-buttons-icon dashicons-before dashicons-share-alt"></span> %s</a>',
+			esc_attr( $editor_id ),
+			esc_attr__('Insert Social Ad', 'wdsm'),
+			__('Insert Social Ad', 'wdsm')
+		);
+
+		
 	}
 }
