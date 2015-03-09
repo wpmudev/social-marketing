@@ -139,11 +139,7 @@ $(".wdsm_insert_ad").live('click', function () {
 var mbuttons_container = $('#media-buttons').length ? /*3.2*/ $('#media-buttons') : /*3.3*/ $("#wp-content-media-buttons");
 if (!mbuttons_container.length) return;
 
-mbuttons_container.append('' + 
-	'<a onclick="return wdsm_openEditor();" title="' + l10nWdsm.add_ad + '" class="thickbox" id="add_advert" href="#TB_inline?width=480&height=594&inlineId=wdsm_ad_container">' +
-		'<img onclick="return false;" alt="' + l10nWdsm.add_ad + '" src="' + _wdsm_data.root_url + '/img/menu_inactive.png">' +
-	'</a>'
-);
+
 
 });
 })(jQuery);
