@@ -10,7 +10,7 @@ class Wdsm_LinkedInService extends Wdsm_Service {
 	}
 
 	public function add_js () {
-		echo '<script src="http://platform.linkedin.com/in.js" type="text/javascript"></script>';
+		wp_enqueue_script('linkedin-wdsm-ext', '//platform.linkedin.com/in.js', array( 'jquery' ) );
 	}
 
 	public function add_handler_js () {

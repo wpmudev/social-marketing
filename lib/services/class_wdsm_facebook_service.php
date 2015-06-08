@@ -11,7 +11,7 @@ class Wdsm_FacebookService extends Wdsm_Service {
 
 	public function add_js () {
 		$locale = preg_replace('/-/', '_', get_locale());
-		wp_enqueue_script('facebook-all', 'http://connect.facebook.net/' . $locale . '/all.js');
+		wp_enqueue_script('facebook-wdsm-ext', '//connect.facebook.net/' . $locale . '/all.js');
 		add_action('wp_footer', array($this, 'init_fb_script'));
 	}
 

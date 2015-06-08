@@ -10,7 +10,7 @@ class Wdsm_GoogleService extends Wdsm_Service {
 	}
 
 	public function add_js () {
-		echo '<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>';
+		wp_enqueue_script( 'google-wdsm-ext', 'https://apis.google.com/js/plusone.js' );
 	}
 
 	public function add_handler_js () {

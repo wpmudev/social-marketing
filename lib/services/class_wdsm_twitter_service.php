@@ -10,7 +10,7 @@ class Wdsm_TwitterService extends Wdsm_Service {
 	}
 
 	public function add_js () {
-		echo '<script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>';
+		wp_enqueue_script( 'twitter-wdsm-ext', '//platform.twitter.com/widgets.js', array( 'jquery' ) );
 	}
 
 	public function add_handler_js () {
