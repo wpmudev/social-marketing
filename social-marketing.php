@@ -3,7 +3,7 @@
 Plugin Name: Social Marketing
 Plugin URI: http://premium.wpmudev.org/project/social-marketing
 Description: Marketing on social networks.
-Version: 1.2.3
+Version: 1.2.4
 Author: WPMU DEV
 Author URI: http://premium.wpmudev.org
 Text Domain: wdsm
