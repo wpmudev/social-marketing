@@ -24,7 +24,7 @@ class Wdsm_TwitterService extends Wdsm_Service {
 	}
 
 	private function _render_button ($ad) {
-		return "<div class='wdsm_button wdsm_facebook_button'><a href='http://twitter.com/share' class='twitter-share-button' data-count='vertical' data-url='{$ad->wdsm->url}'>Tweet</a></div>";
+		return "<div class='wdsm_button wdsm_facebook_button'><a href='//twitter.com/share' class='twitter-share-button' data-count='vertical' data-url='{$ad->wdsm->url}'>Tweet</a></div>";
 	}
 
 	private function _render_text ($ad) {
