@@ -4,7 +4,7 @@
  */
 class Wdsm_WidgetAdvert extends WP_Widget {
 
-	function Wdsm_WidgetAdvert () {
+	function __construct () {
 		$widget_ops = array('classname' => __CLASS__, 'description' => __('Shows your selected Social Marketing Advert', 'wdgpo'));
 		parent::WP_Widget(__CLASS__, 'Social Marketing Advert', $widget_ops);
 		add_action('wp_print_scripts', array($this, 'enqueue_js_dependencies'));
