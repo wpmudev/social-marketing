@@ -142,4 +142,4 @@ Once you've added your ad to your post, you'll see the shortcode automatically a
 
 ![Social Marketing In Page Shared](https://premium.wpmudev.org/wp-content/uploads/2012/01/social-marketing-1220-in-page-shared.png)
 
- And that's all there is to it! We hope you get the most out of Social Marketing. If you need a hand with any aspect of the configuration, or have a new feature to suggest, please drop by the [community forums](https://premium.wpmudev.org/forums/tags/social-marketing) where support staff and other members are standing by to help.
+ And that's all there is to it! We hope you get the most out of Social Marketing. 
